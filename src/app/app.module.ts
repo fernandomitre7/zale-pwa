@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,16 +10,18 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule, // CoreModule include stuff like the httpClient initialization and the API Service to use as wrapper to the API calls
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        CoreModule, // CoreModule include stuff like the httpClient initialization and the API Service to use as wrapper to the API calls
+        AuthModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
