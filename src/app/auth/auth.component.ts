@@ -11,6 +11,7 @@ export class AuthComponent implements OnInit {
 
     signInUser: SignInUser;
     submitting: boolean;
+    isRegistration: boolean;
 
     constructor(private authService: AuthService, private router: Router) { }
 

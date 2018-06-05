@@ -8,30 +8,36 @@ import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
-import { ApiError, ErrorClientStatus } from './api.error';
+import {
+    ApiError,
+    ErrorClientStatus,
+    UserAuth,
+    Tokens,
+    User
+} from './models';
 
 @Injectable({
     providedIn: CoreModule
 })
 export class ApiService {
-    private API_URL: string;
+    private API_VERSION: string;
     private apiToken: string;
 
     private httpOptions = {
         headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': this.apiToken
+            'Content-Type': 'application/json'
         })
     };
 
     constructor(private http: HttpClient) {
-        if (environment.production) {
-            this.API_URL = environment.apiURL;
-        } else {
-            this.API_URL = 'assets';
-        }
+        this.API_VERSION = environment.apiVersion;
     }
 
+    /**
+     * Handles an error comming from the httClient
+     * @param {HttpErrorResponse} error The Error received from httpClient
+     * @returns {ApiError} ApiError
+     */
     private handleError(error: HttpErrorResponse) {
         const apiError = new ApiError();
         if (error.error instanceof ErrorEvent) {
@@ -53,14 +59,21 @@ export class ApiService {
     }
 
     /**
-     * createTokens: Authenticates User
+     * Authenticates User
      *
      * `POST /tokens` to generate AccessToken/RefreshToken pair
      * @param {UserAuth} userAuth the User to authenticate
      */
     createTokens(userAuth: UserAuth): Observable<Tokens> {
-        const url = `${this.API_URL}/tokens.json`;
-        return this.http.post<Tokens>(url, userAuth, this.httpOptions)
+        const url = `${this.API_VERSION}/tokens`;
+        let method: Observable<Tokens>;
+        // NOTE: This is only in the meantime Local/Dev backend is not ready
+        if (environment.production) {
+            method = this.http.post<Tokens>(url, userAuth, this.httpOptions);
+        } else {
+            method = this.http.get<Tokens>(url, this.httpOptions);
+        }
+        return method
             .pipe(
                 retry(2), // retry 2 times
                 tap((tokens: Tokens) => {
@@ -70,35 +83,21 @@ export class ApiService {
             );
     }
 
-}
-
-export class UserAuth {
-
-    private GRANT_TYPE_PASSWORD = 'password';
-    private USER_TYPE_CLIENT = 'client'; // retailer, business, "establecimiento" ,etc, TODO: DEFINE THEM
-
-    constructor(public username?: string, public password?: string, remember?: boolean) {
-        this.grant_type = this.GRANT_TYPE_PASSWORD;
-        this.user_type = this.USER_TYPE_CLIENT;
-        if (remember !== undefined) {
-            this.remember = remember;
-        } else {
-            this.remember = true;
-        }
+    /**
+     * Creates a new User
+     *
+     *  `POST /users`
+     * @param {User} user the User to create
+     */
+    createUser(user: User): Observable<User> {
+        const url = `${this.API_VERSION}/users`;
+        return this.http.post<User>(url, user, this.httpOptions)
+            .pipe(
+                retry(2), // retry 2 times
+                catchError(this.handleError)
+            );
     }
 
-    grant_type: string;
-    user_type: string;
-    remember: boolean;
-
-    isValid(): boolean {
-        return !!this.username && !!this.password;
-    }
-}
-
-export interface Tokens {
-    access_token: string;
-    refresh_token: string;
 }
 
 interface ApiObject {

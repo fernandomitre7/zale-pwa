@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ApiService, UserAuth, Tokens } from '../core/api/api.service';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { ApiError } from '../core/api/api.error';
+import { ApiService } from '../core/api/api.service';
+import { ApiError, UserAuth, User, Tokens } from '../core/api/models';
 
 @Injectable({
     providedIn: 'root'
