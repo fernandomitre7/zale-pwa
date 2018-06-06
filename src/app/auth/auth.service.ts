@@ -2,17 +2,25 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ApiService } from '../core/api/api.service';
-import { ApiError, UserAuth, User, Tokens } from '../core/api/models';
+import {
+    ApiError,
+    UserAuth,
+    User,
+    Tokens
+} from '../core/api/models';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    isLoggedIn = false;
     redirectURL: string;
 
     constructor(private api: ApiService) { }
+
+    isLoggedIn() {
+        return this.api.hasAuthorization();
+    }
 
     private handleApiError(err: ApiError) {
         const errMsg = `Inicio de sesión falló: ${err.message}`;
@@ -26,7 +34,6 @@ export class AuthService {
                 map((tokens: Tokens) => {
                     // TODO: Store in local storage
                     console.log('AuthService:login() tokens: %o', tokens);
-                    this.isLoggedIn = true;
                     return 'Inicio de sesión exitoso.';
                 }),
                 catchError(this.handleApiError)
@@ -35,8 +42,23 @@ export class AuthService {
 
     public logout() {
         // TODO: remove from local storage
-        this.isLoggedIn = false;
+        this.api.removeAuthorization();
         return;
+    }
+
+    public register(username, password, confirm_password: string): Observable<string> {
+        const user = new User();
+        user.username = username;
+        user.password = password;
+        user.confirm_password = confirm_password;
+        return this.api.createUser(user)
+            .pipe(
+                map((newUser: User) => {
+                    console.log('AuthService:register() New User: %o', newUser);
+                    return 'Registro exitoso';
+                }),
+                catchError(this.handleApiError)
+            );
     }
 
 

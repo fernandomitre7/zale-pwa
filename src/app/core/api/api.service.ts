@@ -33,6 +33,14 @@ export class ApiService {
         this.API_VERSION = environment.apiVersion;
     }
 
+    hasAuthorization(): boolean {
+        const auth = this.httpOptions.headers.get('Authorization');
+        return !auth;
+    }
+    removeAuthorization() {
+        this.httpOptions.headers.delete('Authorization');
+    }
+
     /**
      * Handles an error comming from the httClient
      * @param {HttpErrorResponse} error The Error received from httpClient

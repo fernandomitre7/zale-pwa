@@ -9,38 +9,86 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-    signInUser: SignInUser;
+    user: AuthUser;
     submitting: boolean;
     isRegistration: boolean;
 
     constructor(private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
-        this.signInUser = {};
+        this.user = {};
         this.submitting = false;
+        this.isRegistration = false;
     }
 
 
     submit() {
-        if (this.signInUser.username && this.signInUser.password) {
-            this.submitting = true;
-            this.authService.login(this.signInUser.username, this.signInUser.password)
-                .subscribe((success: string) => {
-                    console.log('signIn succesful! msg: %s', success);
-                    const redirectURL = this.authService.redirectURL ?
-                        this.authService.redirectURL : '/main/search';
-                    this.router.navigate([redirectURL]);
-                }, (err: string) => {
-                    console.error('signIn Error: %s', err);
-                }, () => {
-                    console.log('signIn Completed, remove spinner');
-                    this.submitting = false;
-                });
+        if (this.isRegistration) {
+            this.registerNewUser(this.user);
+        } else {
+            this.signInUser(this.user);
         }
+    }
+
+    showRegister() {
+        this.isRegistration = true;
+        return false;
+    }
+
+    showSignIn() {
+        this.isRegistration = false;
+        return false;
+    }
+
+    private signInUser(user: AuthUser) {
+        if (!user.username || !user.password) {
+            alert('Usuario y contraseña son requeridos.');
+            return;
+        }
+        this.submitting = true;
+        this.authService.login(this.user.username, this.user.password)
+            .subscribe((success: string) => {
+                console.log('signIn succesful! msg: %s', success);
+                const redirectURL = this.authService.redirectURL ?
+                    this.authService.redirectURL : '/main';
+                this.router.navigate([redirectURL]);
+            }, (err: string) => {
+                console.error('signIn Error: %s', err);
+            }, () => {
+                console.log('signIn Completed, remove spinner');
+                this.submitting = false;
+            });
+
+    }
+
+    private registerNewUser(user: AuthUser) {
+        if (!user.username || !user.password) {
+            alert('Usuario y contraseña son requeridos.');
+            return;
+        }
+        if (user.password !== user.confirm_password) {
+            alert('Contraseñas no son iguales.');
+            return;
+        }
+
+        this.submitting = true;
+        this.authService.register(user.username, user.password, user.confirm_password)
+            .subscribe((success: string) => {
+                const redirectURL = this.authService.redirectURL ?
+                    this.authService.redirectURL : '/auth/registered';
+                this.router.navigate([redirectURL]);
+            }, (err: string) => {
+                console.error('Register Error: %s', err);
+            }, () => {
+                console.log('Register Completed');
+                this.submitting = false;
+            });
+
     }
 }
 
-interface SignInUser {
+interface AuthUser {
     username?: string;
     password?: string;
+    confirm_password?: string;
 }
