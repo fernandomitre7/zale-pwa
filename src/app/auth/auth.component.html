@@ -18,7 +18,7 @@
         <div class="form-group" [hidden]="!isRegistration">
             <label for="confirm-password">Confirma Contraseña</label>
             <input type="password" autocomplete="off" class="form-control" id="confirm-password"
-                required [(ngModel)]="user.confirm_password" name="confirm-password"
+                [required]="isRegistration" [(ngModel)]="user.confirm_password" name="confirm-password"
                 #confirmPassword="ngModel">
             <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-dange">Contraseña es requerida</div>
         </div>
