@@ -9,7 +9,7 @@ import {
     CanActivateChild
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
     }
 
     checkLogin(url: string): boolean {
-        if (this.authService.isLoggedIn) {
+        if (this.authService.isLoggedIn()) {
             return true;
         }
 

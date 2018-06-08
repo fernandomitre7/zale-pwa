@@ -1,16 +1,26 @@
+<header>
+    Zale
+</header>
 <main>
     <router-outlet></router-outlet>
 </main>
-<nav>
-    <ul>
-        <li>
-            <a routerLink="./search" routerLinkActive="active">Buscar</a>
-        </li>
-        <li>
-            <a routerLink="./receipts" routerLinkActive="active">Recibos</a>
-        </li>
-        <li>
-            <a routerLink="./account" routerLinkActive="active">Perfil</a>
-        </li>
-    </ul>
+<nav class="bottom-nav">
+    <div class="nav-item" routerLinkActive="active">
+        <i class="nav-item-icon material-icons">
+            receipt
+        </i>
+        <a class="nav-item-text" routerLink="./receipts">Recibos</a>
+    </div>
+    <div class="nav-item" routerLinkActive="active">
+        <i class="nav-item-icon material-icons">
+            search
+        </i>
+        <a class="nav-item-text" routerLink="./search">Buscar</a>
+    </div>
+    <div class="nav-item" routerLinkActive="active">
+        <i class="nav-item-icon material-icons">
+            person
+        </i>
+        <a class="nav-item-text" routerLink="./account">Perfil</a>
+    </div>
 </nav>

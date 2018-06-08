@@ -1,7 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+Colors
+    Primary: Blue Grey 50
+    Secondary: Blue Grey 700
+    https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=ECEFF1&secondary.color=455A64
+*/
+html {
+    font-size: 100%;
+}
+:root {
+    --primary-color: #eceff1;
+    --primary-color-light: #FFFFFF;
+    --primary-color-dark: #babdbe;
+    --primary-text: #000000;
 
+    --secondary-color: #455a64;
+    --secondary-color-light: #718792;
+    --secondary-color-dark: #1c313a;
+    --secondary-text: #ffffff;
+
+    --error-color: #B00020;
+}
 body {
     margin: 0;
+    color: var(--primary-text);
+    font-family: 'Montserrat', sans-serif;
 }
 /**
  * Forms CSS
@@ -14,8 +37,21 @@ body {
     border-left: 5px solid #a94442; /* red */
 }
 
+a {
+    text-decoration: none;
+}
+
 .link {
     color: royalblue;
     text-decoration: royalblue underline solid;
     cursor: pointer;
+}
+
+.error {
+    color: var(--error-color);
+}
+
+.error-bg {
+    background-color:  var(--error-color);
+    color: #FFFFFF;
 }

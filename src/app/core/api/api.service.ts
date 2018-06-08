@@ -35,12 +35,14 @@ export class ApiService {
 
     hasAuthorization(): boolean {
         const auth = this.httpOptions.headers.get('Authorization');
-        return !auth;
+        return !!auth;
     }
     removeAuthorization() {
-        this.httpOptions.headers.delete('Authorization');
+        this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
     }
-
+    setAuthorization(token: string) {
+        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', `Bearer ${token}`);
+    }
     /**
      * Handles an error comming from the httClient
      * @param {HttpErrorResponse} error The Error received from httpClient
@@ -85,7 +87,7 @@ export class ApiService {
             .pipe(
                 retry(2), // retry 2 times
                 tap((tokens: Tokens) => {
-                    this.httpOptions.headers.set('Authorization', `Bearer ${tokens.access_token}`);
+                    this.setAuthorization(tokens.access_token);
                 }),
                 catchError(this.handleError)
             );
