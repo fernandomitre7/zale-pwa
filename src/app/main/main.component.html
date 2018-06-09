@@ -5,22 +5,26 @@
     <router-outlet></router-outlet>
 </main>
 <nav class="bottom-nav">
-    <div class="nav-item" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="active">
         <i class="nav-item-icon material-icons">
             receipt
         </i>
-        <a class="nav-item-text" routerLink="./receipts">Recibos</a>
+        <!-- <a class="nav-item-text" routerLink="./receipts">Recibos</a> -->
+        <div class="nav-item-text">Recibos</div>
     </div>
-    <div class="nav-item" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./search']" routerLinkActive="active">
         <i class="nav-item-icon material-icons">
             search
         </i>
-        <a class="nav-item-text" routerLink="./search">Buscar</a>
+        <!-- <a class="nav-item-text" routerLink="./search">Buscar</a> -->
+        <div class="nav-item-text">Buscar</div>
     </div>
-    <div class="nav-item" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./account']" routerLinkActive="active">
         <i class="nav-item-icon material-icons">
             person
         </i>
-        <a class="nav-item-text" routerLink="./account">Perfil</a>
+        <!--  <a class="nav-item-text" routerLink="./account">Perfil</a> -->
+        <div class="nav-item-text">Perfil</div>
+
     </div>
 </nav>
