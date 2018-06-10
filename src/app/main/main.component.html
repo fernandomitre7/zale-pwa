@@ -4,7 +4,7 @@
 <main>
     <router-outlet></router-outlet>
 </main>
-<nav class="bottom-nav">
+<nav class="bottom-nav" [ngClass]="{'hidden': hideNav }">
     <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="active">
         <i class="nav-item-icon material-icons">
             receipt

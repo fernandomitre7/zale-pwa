@@ -55,3 +55,7 @@ a {
     background-color:  var(--error-color);
     color: #FFFFFF;
 }
+
+.hidden {
+    display: none !important;
+}

@@ -6,12 +6,14 @@ import { MainComponent } from './main.component';
 import { SearchComponent } from './search/search.component';
 import { ReceiptsComponent } from './receipts/receipts.component';
 import { AccountComponent } from './account/account.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MainRoutingModule
-  ],
-  declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent]
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        CoreModule
+    ],
+    declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent]
 })
 export class MainModule { }

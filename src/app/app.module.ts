@@ -18,7 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     imports: [
         BrowserModule,
         FormsModule,
-        CoreModule, // CoreModule include stuff like the httpClient initialization and the API Service to use as wrapper to the API calls
+        CoreModule, // API Services and UI Module
         AuthModule,
         AppRoutingModule,
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })

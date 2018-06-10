@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+    private inputFocused: boolean;
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    onSearchFocus() {
+        this.inputFocused = true;
+    }
+
+    onSearchBlur() {
+        this.inputFocused = false;
+    }
 
 }

@@ -1,10 +1,12 @@
-<h1 class="search-question">¿Dónde quieres pagar?</h1>
+<h1 class="search-question" [ngClass]="{'hidden': inputFocused }">¿Dónde quieres pagar?</h1>
 
-<div class="search">
-    <input type="text" placeholder="Busca un establecimiento">
-
+<div class="search" [ngClass]="{'focused': inputFocused }">
+    <!-- <input type="text" placeholder="Busca un establecimiento"> -->
     <i class="material-icons">
-        arrow_forward
+        search
     </i>
-
+    <div class="search-input">
+        <app-input [type]="'text'" [placeholder]="'Busca un establecimiento'" (focus)="onSearchFocus()"
+            (blur)="onSearchBlur()"></app-input>
+    </div>
 </div>
