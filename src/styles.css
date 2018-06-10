@@ -5,9 +5,21 @@ Colors
     Secondary: Blue Grey 700
     https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=ECEFF1&secondary.color=455A64
 */
+
 html {
     font-size: 100%;
 }
+@media screen and (max-width: 375px) and (max-device-height: 800px) {
+    html {
+        font-size: 80%;
+    }
+}
+@media screen and (max-width: 370px) {
+    html {
+        font-size: 75%;
+    }
+}
+
 :root {
     --primary-color: #eceff1;
     --primary-color-light: #FFFFFF;

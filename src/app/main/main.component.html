@@ -5,21 +5,21 @@
     <router-outlet></router-outlet>
 </main>
 <nav class="bottom-nav" [ngClass]="{'hidden': hideNav }">
-    <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="active left">
         <i class="nav-item-icon material-icons">
             receipt
         </i>
         <!-- <a class="nav-item-text" routerLink="./receipts">Recibos</a> -->
         <div class="nav-item-text">Recibos</div>
     </div>
-    <div class="nav-item" [routerLink]="['./search']" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./search']" routerLinkActive="active middle">
         <i class="nav-item-icon material-icons">
             search
         </i>
         <!-- <a class="nav-item-text" routerLink="./search">Buscar</a> -->
         <div class="nav-item-text">Buscar</div>
     </div>
-    <div class="nav-item" [routerLink]="['./account']" routerLinkActive="active">
+    <div class="nav-item" [routerLink]="['./account']" routerLinkActive="active right">
         <i class="nav-item-icon material-icons">
             person
         </i>

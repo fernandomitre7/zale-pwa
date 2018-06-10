@@ -32,10 +32,21 @@ header {
     font-weight: bold;
     background-color: var(--primary-color);
     border-top: 2px solid var(--secondary-color);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     height: 120%;
     outline: none;
+}
+
+.bottom-nav .nav-item.active.middle {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.bottom-nav .nav-item.active.left {
+    border-top-right-radius: 8px;
+}
+
+.bottom-nav .nav-item.active.right {
+    border-top-left-radius: 8px;
 }
 
 .bottom-nav .nav-item .nav-item-icon {
