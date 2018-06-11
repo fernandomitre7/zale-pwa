@@ -2,11 +2,36 @@
 
 <div class="search" [ngClass]="{'focused': inputFocused }">
     <!-- <input type="text" placeholder="Busca un establecimiento"> -->
-    <i class="material-icons">
-        search
+    <i class="material-icons" (click)="unFocusSearch()">
+        arrow_back
     </i>
-    <div class="search-input">
+    <input class="search-input" type="text" placeholder=" Buscar. . ." (focus)="onSearchFocus()">
+    <!--  <div class="search-input">
+        
         <app-input [type]="'text'" [placeholder]="'Busca un establecimiento'" (focus)="onSearchFocus()"
             (blur)="onSearchBlur()"></app-input>
+    </div> -->
+    <i class="material-icons" (click)="clearSearch()">
+        clear
+    </i>
+</div>
+
+<div class="search-results" [ngClass]="{'hidden': !inputFocused }">
+    <div class="list">
+        <div class="list-row">
+            <div class="row-icon">
+                <i class="material-icons">
+                    restaurant
+                </i>
+            </div>
+            <div class="row-text">
+                <div class="row-text-primary">
+                    Il Gardiano
+                </div>
+                <div class="row-text-secondary">
+                    En Parque Centro
+                </div>
+            </div>
+        </div>
     </div>
 </div>

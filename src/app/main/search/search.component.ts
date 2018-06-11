@@ -11,14 +11,18 @@ export class SearchComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        // this.inputFocused = true; //
     }
 
     onSearchFocus() {
         this.inputFocused = true;
     }
 
-    onSearchBlur() {
+    unFocusSearch() {
         this.inputFocused = false;
+    }
+
+    clearSearch() {
     }
 
 }
