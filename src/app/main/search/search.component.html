@@ -1,35 +1,31 @@
 <h1 class="search-question" [ngClass]="{'hidden': inputFocused }">¿Dónde quieres pagar?</h1>
 
-<div class="search" [ngClass]="{'focused': inputFocused }">
+<div class="search" [ngClass]="{'focused': inputFocused, 'elev-2dp': inputFocused }">
     <!-- <input type="text" placeholder="Busca un establecimiento"> -->
     <i class="material-icons" (click)="unFocusSearch()">
         arrow_back
     </i>
+    <i class="material-icons search-icon" [hidden]="inputFocused">
+        search
+    </i>
     <input class="search-input" type="text" placeholder=" Buscar. . ." (focus)="onSearchFocus()">
-    <!--  <div class="search-input">
-        
-        <app-input [type]="'text'" [placeholder]="'Busca un establecimiento'" (focus)="onSearchFocus()"
-            (blur)="onSearchBlur()"></app-input>
-    </div> -->
     <i class="material-icons" (click)="clearSearch()">
         clear
     </i>
 </div>
 
 <div class="search-results" [ngClass]="{'hidden': !inputFocused }">
-    <div class="list">
-        <div class="list-row">
-            <div class="row-icon">
-                <i class="material-icons">
-                    restaurant
-                </i>
-            </div>
+    <div class="list elev-1dp">
+        <div *ngFor="let result of results" class="list-row">
+            <i class="material-icons row-icon">
+                {{result.icon}}
+            </i>
             <div class="row-text">
                 <div class="row-text-primary">
-                    Il Gardiano
+                    {{result.name}}
                 </div>
                 <div class="row-text-secondary">
-                    En Parque Centro
+                    {{result.description}}
                 </div>
             </div>
         </div>
