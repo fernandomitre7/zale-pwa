@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {
     HttpClient,
     HttpHeaders,
-    HttpErrorResponse
+    HttpErrorResponse,
+    HttpParams
 } from '@angular/common/http';
 import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
@@ -15,6 +16,7 @@ import {
     Tokens,
     User
 } from './models';
+import { Establishment } from './models/api.establishment';
 
 @Injectable({
     providedIn: CoreModule
@@ -46,7 +48,7 @@ export class ApiService {
     /**
      * Handles an error comming from the httClient
      * @param {HttpErrorResponse} error The Error received from httpClient
-     * @returns {ApiError} ApiError
+     * @returns {Observable<ApiError>} ApiError
      */
     private handleError(error: HttpErrorResponse) {
         const apiError = new ApiError();
@@ -108,8 +110,23 @@ export class ApiService {
             );
     }
 
+    /**
+     * Get Establishments
+     * @param search_name optional parameter to search establishments by name
+     */
+    getEstablishments(search_name?: string): Observable<Establishment[]> {
+        const url = `${this.API_VERSION}/establishments`;
+        const options = search_name ?
+            { params: new HttpParams().set('search_name', search_name), headhers: this.httpOptions.headers } :
+            this.httpOptions;
+        return this.http.get<Establishment[]>(url, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
 }
 
-interface ApiObject {
+export interface ApiObject {
     isValid(): boolean;
 }

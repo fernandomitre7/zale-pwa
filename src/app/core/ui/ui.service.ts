@@ -9,6 +9,7 @@ export class UIService {
     private focusInputSubject: BehaviorSubject<boolean>;
     private keyboardVisibilitySubject: BehaviorSubject<boolean>;
     private windowResizeObservable: Observable<Event>;
+    private mainHeaderVisiblitySubject: BehaviorSubject<boolean>;
 
     private originalHeight: number;
     private withKeyboardHeight: number;
@@ -17,6 +18,8 @@ export class UIService {
     constructor() {
         this.focusInputSubject = new BehaviorSubject(false);
         this.keyboardVisibilitySubject = new BehaviorSubject(false);
+        this.mainHeaderVisiblitySubject = new BehaviorSubject(true);
+
         this.originalHeight = window.innerHeight;
 
         this.windowResizeObservable = fromEvent(window, 'resize');
@@ -68,5 +71,16 @@ export class UIService {
         return this.focusInputSubject;
     }
 
+    onMainHeaderVisibility(): BehaviorSubject<boolean> {
+        return this.mainHeaderVisiblitySubject;
+    }
+
+    mainHeaderShow() {
+        this.mainHeaderVisiblitySubject.next(true);
+    }
+
+    mainHeaderHide() {
+        this.mainHeaderVisiblitySubject.next(false);
+    }
 
 }

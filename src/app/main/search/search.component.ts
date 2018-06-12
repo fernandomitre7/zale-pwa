@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UIService } from '../../core/ui/ui.service';
+import { Router, NavigationStart, Event } from '@angular/router';
 
 @Component({
     selector: 'app-search',
@@ -7,7 +8,7 @@ import { UIService } from '../../core/ui/ui.service';
     styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+    searchQry: string;
     private inputFocused: boolean;
 
     results = [
@@ -34,22 +35,31 @@ export class SearchComponent implements OnInit {
         { type: 'gas-station', icon: 'local_gas_station', name: 'Oxxo Gas', description: 'Pioneros' },
     ];
 
-    constructor(private uiService: UIService) { }
+    constructor(private uiService: UIService, private router: Router) { }
 
     ngOnInit() {
         // this.inputFocused = true; //
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationStart) {
+                this.uiService.mainHeaderShow();
+            }
+        });
     }
 
     onSearchFocus() {
         this.inputFocused = true;
         this.uiService.inputFocused();
+        this.uiService.mainHeaderHide();
     }
 
-    unFocusSearch() {
+    cancelSearch() {
+        this.clearSearch();
+        this.uiService.mainHeaderShow();
         this.inputFocused = false;
     }
 
     clearSearch() {
+        this.searchQry = '';
     }
 
 }

@@ -7,10 +7,12 @@ import { SearchComponent } from './search/search.component';
 import { ReceiptsComponent } from './receipts/receipts.component';
 import { AccountComponent } from './account/account.component';
 import { CoreModule } from '../core/core.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         MainRoutingModule,
         CoreModule
     ],

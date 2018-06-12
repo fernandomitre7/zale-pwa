@@ -2,13 +2,14 @@
 
 <div class="search" [ngClass]="{'focused': inputFocused, 'elev-2dp': inputFocused }">
     <!-- <input type="text" placeholder="Busca un establecimiento"> -->
-    <i class="material-icons" (click)="unFocusSearch()">
+    <i class="material-icons" (click)="cancelSearch()">
         arrow_back
     </i>
     <i class="material-icons search-icon" [hidden]="inputFocused">
         search
     </i>
-    <input class="search-input" type="text" placeholder=" Buscar. . ." (focus)="onSearchFocus()">
+    <input [(ngModel)]="searchQry" class="search-input" type="text" placeholder=" Buscar. . ."
+        (focus)="onSearchFocus()">
     <i class="material-icons" (click)="clearSearch()">
         clear
     </i>

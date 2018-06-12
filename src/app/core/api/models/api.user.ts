@@ -1,4 +1,6 @@
-export class User {
+import { ApiObject } from '../api.service';
+
+export class User implements ApiObject {
     id?: string;
     username: string;
     password: string;

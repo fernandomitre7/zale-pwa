@@ -9,6 +9,7 @@ import { UIService } from '../core/ui/ui.service';
 export class MainComponent implements OnInit {
 
     hideNav: boolean;
+    hideHeader: boolean;
 
     constructor(private uiService: UIService) { }
 
@@ -16,6 +17,10 @@ export class MainComponent implements OnInit {
         this.hideNav = false;
         this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
             this.hideNav = isKeyboardVisible;
+        });
+
+        this.uiService.onMainHeaderVisibility().subscribe(visible => {
+            this.hideHeader = !visible;
         });
     }
 }
