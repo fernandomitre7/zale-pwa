@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import {
     ApiError,
@@ -112,17 +112,23 @@ export class ApiService {
 
     /**
      * Get Establishments
+     *
+     *  `GET /establishments?search_name={search_name}
      * @param search_name optional parameter to search establishments by name
      */
     getEstablishments(search_name?: string): Observable<Establishment[]> {
         const url = `${this.API_VERSION}/establishments`;
-        const options = search_name ?
-            { params: new HttpParams().set('search_name', search_name), headhers: this.httpOptions.headers } :
-            this.httpOptions;
-        return this.http.get<Establishment[]>(url, this.httpOptions)
-            .pipe(
-                catchError(this.handleError)
-            );
+        if (search_name && search_name.length > 0) {
+            const options = search_name !== '*' ? {
+                params: new HttpParams().set('q', search_name),
+                headers: this.httpOptions.headers
+            } : this.httpOptions;
+            return this.http.get<Establishment[]>(url, options)
+                .pipe(
+                    catchError(this.handleError)
+                );
+        }
+        return of([]);
     }
 
 }

@@ -112,13 +112,15 @@ div.search {
  */
  .list {
      overflow: auto;
-     height: 90vh;
-     padding: 1.8rem;
+     max-height: 90vh;
+     /* padding: 1.8rem; */
      background-color: var(--primary-color-light);
  }
  .list .list-row {
      display: flex;
      margin-bottom: 1.8rem;
+     margin-top: 1.8rem;
+     margin-left: 1.8rem;
  }
 
  .list-row .row-icon {

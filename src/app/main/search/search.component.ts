@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UIService } from '../../core/ui/ui.service';
+import { TYPE_ICON_MAP } from '../../core/ui/ui.type-icon.map';
 import { Router, NavigationStart, Event } from '@angular/router';
+import { ApiService } from '../../core/api/api.service';
+import { Subject, Observable } from 'rxjs';
+import { Establishment } from '../../core/api/models/api.establishment';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-search',
@@ -9,41 +14,21 @@ import { Router, NavigationStart, Event } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
     searchQry: string;
+    private searchName: Subject<string>;
     private inputFocused: boolean;
 
-    results = [
-        { type: 'restaurant', icon: 'restaurant', name: 'Il Gardiano', description: 'En Il Mercato Gentiloni' },
-        { type: 'library', icon: 'local_library', name: 'Gandhi', description: 'Tu pones las ganas de leer' },
-        { type: 'generic-store', icon: 'store', name: 'Tiendita', description: 'De la esquina' },
-        { type: 'market', icon: 'shopping_cart', name: 'Supermercado', description: 'Productos locales' },
-        { type: 'cafe', icon: 'local_cafe', name: 'Venenito Café', description: '¿Apoco no se te antoja un cafecito?' },
-        { type: 'bar', icon: 'local_bar', name: 'La Cantina', description: 'En Il Mercato Gentiloni' },
-        { type: 'apparel', icon: 'local_offer', name: 'Tienda de ropa', description: 'Estamos en oferta' },
-        { type: 'fastfood', icon: 'fastfood', name: 'Hamburguesas al carbón', description: 'Las mejores de Saltillo' },
-        { type: 'pizzeria', icon: 'local_pizza', name: 'Capricciosas Rufino Tamayo', description: 'Pizza Gourmet' },
-        { type: 'gas-station', icon: 'local_gas_station', name: 'Oxxo Gas', description: 'Pioneros' },
+    searchResults: Observable<Establishment[]>;
 
-        { type: 'restaurant', icon: 'restaurant', name: 'Il Gardiano', description: 'En Il Mercato Gentiloni' },
-        { type: 'library', icon: 'local_library', name: 'Gandhi', description: 'Tu pones las ganas de leer' },
-        { type: 'generic-store', icon: 'store', name: 'Tiendita', description: 'De la esquina' },
-        { type: 'market', icon: 'shopping_cart', name: 'Supermercado', description: 'Productos locales' },
-        { type: 'cafe', icon: 'local_cafe', name: 'Venenito Café', description: '¿Apoco no se te antoja un cafecito?' },
-        { type: 'bar', icon: 'local_bar', name: 'La Cantina', description: 'En Il Mercato Gentiloni' },
-        { type: 'apparel', icon: 'local_offer', name: 'Tienda de ropa', description: 'Estamos en oferta' },
-        { type: 'fastfood', icon: 'fastfood', name: 'Hamburguesas al carbón', description: 'Las mejores de Saltillo' },
-        { type: 'pizzeria', icon: 'local_pizza', name: 'Capricciosas Rufino Tamayo', description: 'Pizza Gourmet' },
-        { type: 'gas-station', icon: 'local_gas_station', name: 'Oxxo Gas', description: 'Pioneros' },
-    ];
-
-    constructor(private uiService: UIService, private router: Router) { }
+    constructor(private uiService: UIService, private router: Router, private api: ApiService) { }
 
     ngOnInit() {
-        // this.inputFocused = true; //
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {
                 this.uiService.mainHeaderShow();
             }
         });
+
+        this.subscribeSearch();
     }
 
     onSearchFocus() {
@@ -60,6 +45,31 @@ export class SearchComponent implements OnInit {
 
     clearSearch() {
         this.searchQry = '';
+        this.search();
+        this.uiService.hideLoading();
+    }
+
+    search() {
+        this.searchName.next(this.searchQry.toLowerCase().trim());
+    }
+
+    private subscribeSearch() {
+        this.searchName = new Subject<string>();
+
+        this.searchResults = this.searchName.pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            tap(() => this.uiService.showLoading()),
+            switchMap(searchName => this.api.getEstablishments(searchName)),
+            tap(results => {
+                console.log('SearchResults: %o', results);
+                this.uiService.hideLoading();
+            })
+        );
+    }
+
+    getIcon(type: string) {
+        return TYPE_ICON_MAP[type];
     }
 
 }

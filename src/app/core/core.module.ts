@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { UIModule } from './ui/ui.module';
 import { InputComponent } from './ui/input/input.component';
+import { LoadingComponent } from './ui/loading/loading.component';
 
 @NgModule({
     imports: [
@@ -11,6 +12,6 @@ import { InputComponent } from './ui/input/input.component';
         UIModule
     ],
     declarations: [],
-    exports: [InputComponent]
+    exports: [InputComponent, LoadingComponent]
 })
 export class CoreModule { }

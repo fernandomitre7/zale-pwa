@@ -7,6 +7,6 @@ export const TYPE_ICON_MAP: any = {
     'bar': 'local_bar',
     'apparel': 'local_offer',
     'fastfood': 'fastfood',
-    'pizza': 'local_pizza',
+    'pizzeria': 'local_pizza',
     'gas-station': 'local_gas_station'
 };

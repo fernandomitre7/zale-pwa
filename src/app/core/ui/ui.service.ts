@@ -10,6 +10,7 @@ export class UIService {
     private keyboardVisibilitySubject: BehaviorSubject<boolean>;
     private windowResizeObservable: Observable<Event>;
     private mainHeaderVisiblitySubject: BehaviorSubject<boolean>;
+    private loadingVisiblitySubject: BehaviorSubject<boolean>;
 
     private originalHeight: number;
     private withKeyboardHeight: number;
@@ -19,6 +20,7 @@ export class UIService {
         this.focusInputSubject = new BehaviorSubject(false);
         this.keyboardVisibilitySubject = new BehaviorSubject(false);
         this.mainHeaderVisiblitySubject = new BehaviorSubject(true);
+        this.loadingVisiblitySubject = new BehaviorSubject(false);
 
         this.originalHeight = window.innerHeight;
 
@@ -83,4 +85,13 @@ export class UIService {
         this.mainHeaderVisiblitySubject.next(false);
     }
 
+    onLoadingVisibility() {
+        return this.loadingVisiblitySubject;
+    }
+    showLoading() {
+        this.loadingVisiblitySubject.next(true);
+    }
+    hideLoading() {
+        this.loadingVisiblitySubject.next(false);
+    }
 }

@@ -8,22 +8,21 @@
     <i class="material-icons search-icon" [hidden]="inputFocused">
         search
     </i>
-    <input [(ngModel)]="searchQry" class="search-input" type="text" placeholder=" Buscar. . ."
-        (focus)="onSearchFocus()">
+    <input [(ngModel)]="searchQry" (keyup)="search()" class="search-input" type="text"
+        placeholder=" Buscar. . ." (focus)="onSearchFocus()">
     <i class="material-icons" (click)="clearSearch()">
         clear
     </i>
 </div>
-
 <div class="search-results" [ngClass]="{'hidden': !inputFocused }">
     <div class="list elev-1dp">
-        <div *ngFor="let result of results" class="list-row">
+        <div *ngFor="let result of searchResults | async" class="list-row">
             <i class="material-icons row-icon">
-                {{result.icon}}
+                {{getIcon(result.type)}}
             </i>
             <div class="row-text">
                 <div class="row-text-primary">
-                    {{result.name}}
+                    {{result.display_name}}
                 </div>
                 <div class="row-text-secondary">
                     {{result.description}}
