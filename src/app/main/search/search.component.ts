@@ -6,6 +6,7 @@ import { ApiService } from '../../core/api/api.service';
 import { Subject, Observable } from 'rxjs';
 import { Establishment } from '../../core/api/models/api.establishment';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { PayService } from '../pay/pay.service';
 
 @Component({
     selector: 'app-search',
@@ -19,7 +20,12 @@ export class SearchComponent implements OnInit {
 
     searchResults: Observable<Establishment[]>;
 
-    constructor(private uiService: UIService, private router: Router, private api: ApiService) { }
+    constructor(
+        private uiService: UIService,
+        private payService: PayService,
+        private router: Router,
+        private api: ApiService
+    ) { }
 
     ngOnInit() {
         this.router.events.subscribe((event: Event) => {
@@ -70,6 +76,12 @@ export class SearchComponent implements OnInit {
 
     getIcon(type: string) {
         return TYPE_ICON_MAP[type];
+    }
+
+    payInEstablishment(establishment: Establishment) {
+        this.uiService.hideNav();
+        this.payService.useEstablishment(establishment);
+        this.router.navigate(['/main/pay']);
     }
 
 }

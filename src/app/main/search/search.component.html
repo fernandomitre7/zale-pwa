@@ -16,7 +16,8 @@
 </div>
 <div class="search-results" [ngClass]="{'hidden': !inputFocused }">
     <div class="list elev-1dp">
-        <div *ngFor="let result of searchResults | async" class="list-row ripple">
+        <div *ngFor="let result of searchResults | async" class="list-row ripple" (click)="payInEstablishment(result)">
+            <!-- [routerLink]="['/pay', result.id]"> -->
             <i class="material-icons row-icon">
                 {{getIcon(result.type)}}
             </i>

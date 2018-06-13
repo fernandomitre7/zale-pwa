@@ -10,6 +10,7 @@ export class UIService {
     private keyboardVisibilitySubject: BehaviorSubject<boolean>;
     private windowResizeObservable: Observable<Event>;
     private mainHeaderVisiblitySubject: BehaviorSubject<boolean>;
+    private navVisibilitySubject: BehaviorSubject<boolean>;
     private loadingVisiblitySubject: BehaviorSubject<boolean>;
 
     private originalHeight: number;
@@ -20,6 +21,7 @@ export class UIService {
         this.focusInputSubject = new BehaviorSubject(false);
         this.keyboardVisibilitySubject = new BehaviorSubject(false);
         this.mainHeaderVisiblitySubject = new BehaviorSubject(true);
+        this.navVisibilitySubject = new BehaviorSubject(true);
         this.loadingVisiblitySubject = new BehaviorSubject(false);
 
         this.originalHeight = window.innerHeight;
@@ -83,6 +85,16 @@ export class UIService {
 
     mainHeaderHide() {
         this.mainHeaderVisiblitySubject.next(false);
+    }
+
+    onNavVisibility(): BehaviorSubject<boolean> {
+        return this.navVisibilitySubject;
+    }
+    showNav() {
+        this.navVisibilitySubject.next(true);
+    }
+    hideNav() {
+        this.navVisibilitySubject.next(false);
     }
 
     onLoadingVisibility() {

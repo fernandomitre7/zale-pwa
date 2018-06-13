@@ -73,6 +73,7 @@ button.btn {
     font-family: 'Montserrat', sans-serif;
     outline: none;
     border: none;
+    border-radius: 6px;
 
     background-position: center;
     transition: background 0.6s ease;

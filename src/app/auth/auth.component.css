@@ -12,16 +12,25 @@
     margin-top: 2rem;
 }
 
-.form-group {
-    display: flex;
+.input-group {
     margin: 2rem 0;
 }
 
-.form-group i {
+.input-icon {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.input-icon i {
     margin-right: 5px;
     color: var(--secondary-color);
 }
 
-.form-group input {
+.input-icon input {
     color: var(--secondary-color-dark);
 }
+
+.input-group .input-error {
+    color: var(--error-color);
+}
+
