@@ -43,16 +43,61 @@ body {
 input {
     font-family: 'Montserrat', sans-serif;
 }
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    font-size: 1.2rem;
+    width: 100%;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-width: 0px 0px 2px 0px;
+    border-color: var(--secondary-color-dark);
+}
+
+button.btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color-light);
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    border: none;
+
+    background-position: center;
+    transition: background 0.6s ease;
+}
+
+button.btn:disabled {
+    opacity: 0.7;
+}
+
+button.btn:active {
+    background-color: var(--secondary-color-light);
+    background-size: 100%;
+    transition: background 0s ease;
+}
+
 
 /**
  * Forms CSS
  */
- .ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
+/*  .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; 
 }
 .ng-invalid.ng-touched:not(form) {
-    border-left: 5px solid #a94442; /* red */
-}
+    border-left: 5px solid #a94442;
+} */
 
 /**
  * Ripple Effect

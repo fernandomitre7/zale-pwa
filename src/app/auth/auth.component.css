@@ -1,0 +1,27 @@
+.auth-container {
+    max-width: 70%;
+    margin: 15vh auto;
+}
+
+.auth-container img {
+    display: block;
+    margin: auto;
+}
+
+.auth-container form {
+    margin-top: 2rem;
+}
+
+.form-group {
+    display: flex;
+    margin: 2rem 0;
+}
+
+.form-group i {
+    margin-right: 5px;
+    color: var(--secondary-color);
+}
+
+.form-group input {
+    color: var(--secondary-color-dark);
+}

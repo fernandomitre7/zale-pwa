@@ -58,7 +58,7 @@ div.search {
     flex-grow: 1;
 }
 
-.search .search-input {
+/* .search .search-input {
     font-size: 1.2rem;
     width: 100%;
     border-width: 0px 0px 1px 0px;
@@ -68,10 +68,10 @@ div.search {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+} */
 
 .search.focused .search-input{
-    outline: none;
+    /* outline: none; */
     border: none;
     background-color: var(--secondary-color);
     color: var(--primary-color-light);
