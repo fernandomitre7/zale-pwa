@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UIService } from '../core/ui/ui.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-main',
@@ -12,7 +13,7 @@ export class MainComponent implements OnInit {
     private forceHideNave: boolean;
     hideHeader: boolean;
 
-    constructor(private uiService: UIService) { }
+    constructor(private uiService: UIService, private router: Router, private activeRoute: ActivatedRoute) { }
 
     ngOnInit() {
         this.hideNav = false;

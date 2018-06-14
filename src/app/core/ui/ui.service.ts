@@ -82,7 +82,6 @@ export class UIService {
     mainHeaderShow() {
         this.mainHeaderVisiblitySubject.next(true);
     }
-
     mainHeaderHide() {
         this.mainHeaderVisiblitySubject.next(false);
     }

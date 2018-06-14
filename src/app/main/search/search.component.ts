@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UIService } from '../../core/ui/ui.service';
 import { TYPE_ICON_MAP } from '../../core/ui/ui.type-icon.map';
 import { Router, NavigationStart, Event } from '@angular/router';
 import { ApiService } from '../../core/api/api.service';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, Subscribable, Subscription } from 'rxjs';
 import { Establishment } from '../../core/api/models/api.establishment';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { PayService } from '../pay/pay.service';
@@ -13,10 +13,11 @@ import { PayService } from '../pay/pay.service';
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
     searchQry: string;
     private searchName: Subject<string>;
     private inputFocused: boolean;
+    private routerEventsSubscription: Subscription;
 
     searchResults: Observable<Establishment[]>;
 
@@ -28,13 +29,17 @@ export class SearchComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.router.events.subscribe((event: Event) => {
+        this.routerEventsSubscription = this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {
                 this.uiService.mainHeaderShow();
             }
         });
 
         this.subscribeSearch();
+    }
+
+    ngOnDestroy() {
+        this.routerEventsSubscription.unsubscribe();
     }
 
     onSearchFocus() {

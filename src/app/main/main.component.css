@@ -9,6 +9,21 @@ header {
     top: 0;
 }
 
+header .header-nav {
+    display: block;
+    width: 3rem;
+    font-size: 1.8rem;
+}
+
+header .header-nav ~ .header-name {
+    width: 100%;
+    margin-right: 3rem;
+}
+
+header .header-nav.hidden ~ .header-name {
+    margin-right: 0;
+}
+
 .bottom-nav {
     position: fixed;
     bottom: 0;

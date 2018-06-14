@@ -22,14 +22,24 @@ html {
 }
 
 :root {
-    --primary-color: #eceff1;
+    /* --primary-color: #eceff1;
     --primary-color-light: #FFFFFF;
     --primary-color-dark: #babdbe;
-    --primary-text: #000000;
+    --primary-text: #000000; */
 
-    --secondary-color: #455a64;
+    /* --secondary-color: #455a64;
     --secondary-color-light: #718792;
     --secondary-color-dark: #1c313a;
+    --secondary-text: #ffffff; */
+
+    --primary-color: #fafafa;
+    --primary-color-light: #FFFFFF;
+    --primary-color-dark: #c7c7c7;
+    --primary-text: #000000;
+
+    --secondary-color: #2e7d32;
+    --secondary-color-light: #60ad5e;
+    --secondary-color-dark: #005005;
     --secondary-text: #ffffff;
 
     --error-color: #B00020;
@@ -45,7 +55,8 @@ input {
 }
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     font-size: 1.2rem;
     width: 100%;
     border-width: 0px 0px 1px 0px;
@@ -59,7 +70,8 @@ input[type="password"] {
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="number"]:focus {
     border-width: 0px 0px 2px 0px;
     border-color: var(--secondary-color-dark);
 }

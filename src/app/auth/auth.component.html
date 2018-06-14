@@ -1,5 +1,5 @@
 <div class="auth-container">
-    <img src="/assets/logo_sm.png" width="128">
+    <img src="/assets/logo_green_lg.png" width="128">
     <form (ngSubmit)="submit()" #signInForm="ngForm">
 
         <div class="input-group">
@@ -7,9 +7,9 @@
                 <i class="material-icons">
                     email
                 </i>
-                <input type="email" placeholder=" Correo electrónico" name="email" autocomplete="email"
-                    id="username" required [(ngModel)]="user.username" name="username"
-                    #username="ngModel" [email]="true">
+                <input type="email" placeholder=" Correo electrónico" autocomplete="email" id="username"
+                    required [(ngModel)]="user.username" name="username" #username="ngModel"
+                    [email]="true">
             </div>
             <div [hidden]="username.valid || username.pristine || username.untouched" class="input-error">Usuario es requerido y debe ser un correo electrónico</div>
         </div>

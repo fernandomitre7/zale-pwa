@@ -1,0 +1,59 @@
+.return {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vmin;
+    font-size: 1.2rem;
+}
+
+.return i {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.return span {
+    text-decoration: underline var(--secondary-color);
+}
+
+.pay-question {
+    font-weight: normal;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20vmin;
+}
+
+.pay-question.focused {
+    margin-top: 10vmin;
+}
+
+.pay-question .name {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.currency-input {
+    display: flex;
+    margin: 2rem auto 0;
+    width: 40%;
+}
+
+.currency-input input {
+    text-align:right;
+}
+
+.pay-btn {
+    min-height: 3rem;
+    width: 70%;
+    display: flex;
+    margin: 2.5rem auto;
+    align-items: center;
+}
+
+.pay-btn p {
+    margin: 0 auto;
+}
+
+.pay-other-method {
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: underline var(--secondary-color);
+}

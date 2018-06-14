@@ -1,12 +1,20 @@
 # zale-pwa
 Zale, haz tus pagos en establecimientos de manera rápida y sencilla.
 
+---
 ## Favicon, manifest generator:
 
 https://realfavicongenerator.net/
 
 Check favicon: https://realfavicongenerator.net/favicon_checker
 
+---
+
+## TODO:
+- When searching for a place, add scanning QR code functionality using this library:
+https://github.com/schmich/instascan
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
