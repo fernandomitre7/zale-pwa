@@ -1,7 +1,8 @@
 header {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color-light);
+    border-bottom: 1px solid var(--primary-color-dark);
     text-align: center;
-    color: var(--secondary-text);
+    color: var(--secondary-color);
     font-size: 1.5rem;
     padding: .75rem 0;
     width: 100vw;
@@ -40,23 +41,22 @@ header .header-nav.hidden ~ .header-name {
 
 .bottom-nav .nav-item {
     flex-grow: 1;
-    color: var(--secondary-color);
+    color: var(--icon-color);
     height: 100%;
 }
 
 .bottom-nav .nav-item.active {
     flex-grow: 1;
     color: var(--secondary-color);
-    font-weight: bold;
     background-color: var(--primary-color-light);
     border-top: 2px solid var(--secondary-color);
     height: 120%;
     outline: none;
 }
 
-.nav-item.active i {
+/* .nav-item.active i {
     font-weight: bold;
-}
+} */
 
 .bottom-nav .nav-item.active.middle {
     border-top-left-radius: 6px;
@@ -78,7 +78,6 @@ header .header-nav.hidden ~ .header-name {
 .bottom-nav .nav-item .nav-item-text {
     text-decoration: none;
     font-size: .8rem;
-    color: var(--secondary-color);
     display: block;
     margin-top: -0.2rem;
 }

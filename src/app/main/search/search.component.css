@@ -24,8 +24,9 @@ div.search {
     width: 100%;
     height: 3.5rem;
     margin-top: 0;
-    background-color: var(--secondary-color);
-    color: var(--primary-color-light);
+    background-color: var(--primary-color-light);
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--primary-color-dark);
     position: relative;
     position: sticky;
     top: 0;
@@ -70,8 +71,8 @@ div.search {
 .search.focused .search-input{
     /* outline: none; */
     border: none;
-    background-color: var(--secondary-color);
-    color: var(--primary-color-light);
+    background-color: var(--primary-color-light);
+    color: var(--primary-text);
 }
 
 .search .search-input::-webkit-input-placeholder {

@@ -9,6 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { CoreModule } from '../core/core.module';
 import { FormsModule } from '@angular/forms';
 import { PayComponent } from './pay/pay.component';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 
 @NgModule({
     imports: [
@@ -17,6 +18,6 @@ import { PayComponent } from './pay/pay.component';
         MainRoutingModule,
         CoreModule
     ],
-    declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent, PayComponent]
+    declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent, PayComponent, PaymentMethodsComponent]
 })
 export class MainModule { }

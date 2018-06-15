@@ -5,6 +5,7 @@ import { SearchComponent } from './search/search.component';
 import { ReceiptsComponent } from './receipts/receipts.component';
 import { AccountComponent } from './account/account.component';
 import { PayComponent } from './pay/pay.component';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'search' },
             { path: 'search', component: SearchComponent },
             { path: 'pay', component: PayComponent },
+            { path: 'payment-methods', component: PaymentMethodsComponent },
             { path: 'receipts', component: ReceiptsComponent },
             { path: 'account', component: AccountComponent }
         ]

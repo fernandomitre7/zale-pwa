@@ -4,22 +4,22 @@
 <main>
     <router-outlet></router-outlet>
 </main>
-<nav class="bottom-nav elev-inv-1dp" [ngClass]="{'hidden': hideNav }">
-    <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="elev-inv-1dp active left">
+<nav class="bottom-nav" [ngClass]="{'hidden': hideNav }">
+    <div class="nav-item" [routerLink]="['./receipts']" routerLinkActive="elev-sides-1dp active left">
         <i class="nav-item-icon material-icons">
             receipt
         </i>
         <!-- <a class="nav-item-text" routerLink="./receipts">Recibos</a> -->
         <div class="nav-item-text">Recibos</div>
     </div>
-    <div class="nav-item" [routerLink]="['./search']" routerLinkActive="elev-inv-1dp active middle">
+    <div class="nav-item" [routerLink]="['./search']" routerLinkActive="elev-sides-1dp active middle">
         <i class="nav-item-icon material-icons">
             search
         </i>
         <!-- <a class="nav-item-text" routerLink="./search">Buscar</a> -->
         <div class="nav-item-text">Buscar</div>
     </div>
-    <div class="nav-item" [routerLink]="['./account']" routerLinkActive="elev-inv-1dp active right">
+    <div class="nav-item" [routerLink]="['./account']" routerLinkActive="elev-sides-1dp active right">
         <i class="nav-item-icon material-icons">
             person
         </i>

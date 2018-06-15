@@ -43,6 +43,8 @@ html {
     --secondary-text: #ffffff;
 
     --error-color: #B00020;
+
+    --icon-color: #424242;
 }
 body {
     margin: 0;
@@ -137,8 +139,8 @@ a {
 }
 
 .link {
-    color: royalblue;
-    text-decoration: royalblue underline solid;
+    color: var(--secondary-color-dark);
+    text-decoration: var(--secondary-color-dark) underline solid;
     cursor: pointer;
 }
 

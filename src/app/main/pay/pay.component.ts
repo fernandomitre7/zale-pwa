@@ -84,6 +84,9 @@ export class PayComponent implements OnInit, OnDestroy {
         this.router.navigate(['/main/search']);
     }
 
-
+    changePaymentMethod() {
+        this.uiService.hideNav();
+        this.router.navigate(['/main/payment-methods']);
+    }
 
 }
