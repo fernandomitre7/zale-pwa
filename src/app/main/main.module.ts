@@ -10,12 +10,14 @@ import { CoreModule } from '../core/core.module';
 import { FormsModule } from '@angular/forms';
 import { PayComponent } from './pay/pay.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
+import { CardModule } from 'ngx-card/ngx-card';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         MainRoutingModule,
+        CardModule,
         CoreModule
     ],
     declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent, PayComponent, PaymentMethodsComponent]

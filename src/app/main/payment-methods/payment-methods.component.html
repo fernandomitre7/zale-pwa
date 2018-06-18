@@ -31,10 +31,24 @@
     </h1>
     <div class="new-method elev-2dp">
         <div class="new-method-form">
-            <form name="new-card-form" id="new-card-form" (ngSubmit)="addNewCard()" #newCardForm="ngForm">
+            <div class="card-container" [ngClass]="{'small': cardWidth === 300}"></div>
+            <form card container=".card-container" card-width="{{cardWidth}}" [messages]="messages"
+                [placeholders]="placeholders" [masks]="masks" formatting="true" debug="true">
+                <input type="tel" inputmode="numeric" placeholder="Número de Tarjeta" id="cc-number"
+                    name="cc-number" autocomplete="cc-number" card-number>
+                <input type="text" placeholder="Nombre en la Tarjeta" id="cc-name" name="cc-name"
+                    autocomplete="cc-name" card-name>
+                <div class="exp-cvc">
+                    <input type="tel" placeholder="mm / aa" id="cc-exp" name="cc-exp" autocomplete="cc-exp"
+                        card-expiry>
+                    <input type="tel" placeholder="cvc" id="cc-csc" name="cc-csc" autocomplete="cc-csc"
+                        card-cvc>
+                </div>
+            </form>
+            <!-- <form name="new-card-form" id="new-card-form" (ngSubmit)="addNewCard()" #newCardForm="ngForm">
                 <input type="text" name="cc-name" id="cc-name" autocomplete="cc-name">
 
-            </form>
+            </form> -->
             <!-- <form name="my-form-name" id="my-form-id" action="https://my-website.com/cc-submit" method="post">
                     Credit card number: <input autofocus="" type="text" name="CCNo"><br>
                     Name on card: <input type="text" name="name"><br>

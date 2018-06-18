@@ -40,7 +40,36 @@
 }
 .new-method-form {
     flex-grow: 1;
+    padding: 2rem;
 }
+.new-method-form .card-container {
+    margin-bottom: 2rem;
+}
+
+.new-method-form .card-container.small {
+    margin-left: -2rem;
+}
+
+.new-method-form input {
+    background-color: var(--primary-color-light);
+    margin-bottom: 1rem;
+}
+
+/* .new-method-form input:last-child {
+    margin-bottom: 0;
+} */
+
+.new-method-form .exp-cvc {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-method-form .exp-cvc input {
+    margin: 0;
+    width: 10rem;
+}
+
+
 .new-method-buttons {
     display: flex;
     justify-content: space-around;

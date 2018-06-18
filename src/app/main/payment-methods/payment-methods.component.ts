@@ -14,11 +14,15 @@ export class PaymentMethodsComponent implements OnInit {
         { brand: 'Master Card', number: '2222' },
         { brand: 'American Express', number: '5555' }
     ];
+
+    cardWidth: number;
+
     addingNewMethod: boolean;
     constructor(private router: Router) { }
 
     ngOnInit() {
         this.addingNewMethod = false;
+        this.cardWidth = window.innerWidth <= 350 ? 300 : 350;
     }
 
     back() {
