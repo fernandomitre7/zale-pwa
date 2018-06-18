@@ -1,4 +1,4 @@
-.return {
+/* .return {
     display: flex;
     justify-content: center;
     margin-top: 20vmin;
@@ -12,7 +12,7 @@
 
 .return span {
     text-decoration: underline var(--secondary-color);
-}
+} */
 
 .pay-question {
     font-weight: normal;

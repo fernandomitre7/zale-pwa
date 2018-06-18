@@ -1,3 +1,84 @@
-<p>
-  payment-methods works!
-</p>
+<div [hidden]="addingNewMethod">
+    <div class="return" (click)="back()">
+        <i class="material-icons">
+            arrow_back
+        </i>
+        <span>Regresar</span>
+    </div>
+
+    <h1 class="title">
+        Métodos de Pago
+    </h1>
+
+
+    <div class="list elev-2dp">
+        <div class="list-row ripple" *ngFor="let card of cards">
+            <i class="material-icons">
+                payment
+            </i>
+            <span>{{ card.brand + ' ' + card.number }}</span>
+        </div>
+    </div>
+
+    <button type="button" class="btn elev-2dp add-btn" (click)="showAddNewMethod()">
+        Agregar Método de Pago
+    </button>
+</div>
+
+<div [hidden]="!addingNewMethod">
+    <h1 class="title">
+        Agregar Método de Pago
+    </h1>
+    <div class="new-method elev-2dp">
+        <div class="new-method-form">
+            <form name="new-card-form" id="new-card-form" (ngSubmit)="addNewCard()" #newCardForm="ngForm">
+                <input type="text" name="cc-name" id="cc-name" autocomplete="cc-name">
+
+            </form>
+            <!-- <form name="my-form-name" id="my-form-id" action="https://my-website.com/cc-submit" method="post">
+                    Credit card number: <input autofocus="" type="text" name="CCNo"><br>
+                    Name on card: <input type="text" name="name"><br>
+                    Expiry Date: <select name="CCExpiresMonth">
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                    /
+                  <select name="CCExpiresYear">
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      <option value="2018">2018</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                    </select>
+                    <br>
+                    CVC: <input name="cvc">
+                  <br>
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Submit">
+                  </form> -->
+        </div>
+
+        <div class="new-method-buttons">
+            <button type="button" class="btn-clear error ripple" (click)="cancel()">
+                Cancelar
+            </button>
+            <!-- <span class="vertical-div"></span> -->
+            <button type="button" class="btn-clear success ripple" (click)="addNewMethod()">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>

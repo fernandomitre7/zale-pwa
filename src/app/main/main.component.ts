@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UIService } from '../core/ui/ui.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, UrlSegment, Event, NavigationStart } from '@angular/router';
+
+const ShowNavRoutes = ['/main/search', '/main/receipts', '/main/account'];
 
 @Component({
     selector: 'app-main',
@@ -13,21 +15,31 @@ export class MainComponent implements OnInit {
     private forceHideNave: boolean;
     hideHeader: boolean;
 
-    constructor(private uiService: UIService, private router: Router, private activeRoute: ActivatedRoute) { }
+    private isKeyboardVisible: boolean;
+    private isRouteWithNav: boolean;
+
+    constructor(private uiService: UIService, private router: Router) { }
 
     ngOnInit() {
-        this.hideNav = false;
+        console.log('Main router.url: %o', this.router.url);
+        this.isRouteWithNav = ShowNavRoutes.includes(this.router.url);
+        this.hideNav = !this.isRouteWithNav;
         this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
-            this.hideNav = this.forceHideNave || isKeyboardVisible;
-        });
-
-        this.uiService.onNavVisibility().subscribe(visible => {
-            this.forceHideNave = !visible;
-            this.hideNav = !visible;
+            this.isKeyboardVisible = isKeyboardVisible;
+            if (this.isRouteWithNav) { // if this route should have nav
+                this.hideNav = this.forceHideNave || isKeyboardVisible;
+            }
         });
 
         this.uiService.onMainHeaderVisibility().subscribe(visible => {
             this.hideHeader = !visible;
+        });
+
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationStart) {
+                console.log('Main Router Event: %o', event);
+                this.hideNav = !ShowNavRoutes.includes(event.url);
+            }
         });
     }
 }

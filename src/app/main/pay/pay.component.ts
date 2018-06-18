@@ -6,6 +6,7 @@ import { PayService } from './pay.service';
 import { UIService } from '../../core/ui/ui.service';
 import { Subscription, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Card } from '../../core/api/models/api.card';
 
 @Component({
     selector: 'app-pay',
@@ -13,10 +14,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
     styleUrls: ['./pay.component.css']
 })
 export class PayComponent implements OnInit, OnDestroy {
-    card: any = {
-        brand: 'Visa',
-        number: '1111'
-    };
+    card: Card = new Card();
+
     amount: any;
     establishment: Establishment;
     private routerEventsSubscription: Subscription;
@@ -24,7 +23,10 @@ export class PayComponent implements OnInit, OnDestroy {
     inputFocused: boolean;
 
     constructor(private payService: PayService, private uiService: UIService,
-        private router: Router, @Inject(LOCALE_ID) private locale: string) { }
+        private router: Router, @Inject(LOCALE_ID) private locale: string) {
+        this.card.brand = 'Visa';
+        this.card.number = '1212';
+    }
 
     ngOnInit() {
         this.establishment = this.payService.getEstablishmentToUse();
@@ -40,12 +42,6 @@ export class PayComponent implements OnInit, OnDestroy {
             /* this.router.navigate(['/main']);
             return; */
         }
-
-        this.routerEventsSubscription = this.router.events.subscribe((event: Event) => {
-            if (event instanceof NavigationStart) {
-                this.uiService.showNav();
-            }
-        });
 
         this.keyboardVisibilitySubscription = this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
             this.inputFocused = isKeyboardVisible;
@@ -85,7 +81,6 @@ export class PayComponent implements OnInit, OnDestroy {
     }
 
     changePaymentMethod() {
-        this.uiService.hideNav();
         this.router.navigate(['/main/payment-methods']);
     }
 

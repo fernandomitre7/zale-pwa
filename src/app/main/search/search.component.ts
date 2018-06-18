@@ -84,7 +84,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     payInEstablishment(establishment: Establishment) {
-        this.uiService.hideNav();
         this.payService.useEstablishment(establishment);
         this.router.navigate(['/main/pay']);
     }
