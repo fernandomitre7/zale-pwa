@@ -8,7 +8,7 @@ import {
 import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
+import { catchError, retry, tap, map } from 'rxjs/operators';
 import {
     ApiError,
     ErrorClientStatus,
@@ -17,6 +17,7 @@ import {
     User
 } from './models';
 import { Establishment } from './models/api.establishment';
+import { Card } from './models/api.card';
 
 @Injectable({
     providedIn: CoreModule
@@ -131,6 +132,27 @@ export class ApiService {
         return of([]);
     }
 
+    getCards(): Observable<Card[]> {
+        const url = `${this.API_VERSION}/users/me/cards`;
+
+        return this.http.get<Card[]>(url, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getCardDefault(): Observable<Card> {
+        const url = `${this.API_VERSION}/users/me/cards?default=true&_limit=1`;
+        return this.http.get<Card[]>(url, this.httpOptions)
+            .pipe(
+                map((cards: Card[]) => {
+                    if (cards && cards.length > 0) {
+                        return cards[0];
+                    }
+                }),
+                catchError(this.handleError)
+            );
+    }
 }
 
 export interface ApiObject {

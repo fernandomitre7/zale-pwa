@@ -21,14 +21,19 @@
     </div>
 </form>
 
-<button type="button" class="btn elev-2dp pay-btn">
+<button *ngIf="(defaultCard$ | async) as card; else loading" type="button" class="btn elev-2dp pay-btn">
     <i class="material-icons">
         payment
     </i>
     <p>Pagar usando
-        <em>{{ card.brand + ' ' + card.number }}</em>
+        <em>{{ card.brand | titlecase }} {{ card.card_number }}</em>
     </p>
 </button>
+<ng-template #loading>
+    <button disabled type="button" class="btn elev-2dp pay-btn">
+        <p>. . .</p>
+    </button>
+</ng-template>
 <div class="pay-other-method" (click)="changePaymentMethod()">
     Usar otro método de pago
 </div>

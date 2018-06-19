@@ -30,69 +30,36 @@
         Agregar Método de Pago
     </h1>
     <div class="new-method elev-2dp">
-        <div class="new-method-form">
-            <div class="card-container" [ngClass]="{'small': cardWidth === 300}"></div>
-            <form card container=".card-container" card-width="{{cardWidth}}" [messages]="messages"
-                [placeholders]="placeholders" [masks]="masks" formatting="true" debug="true">
-                <input type="tel" inputmode="numeric" placeholder="Número de Tarjeta" id="cc-number"
-                    name="cc-number" autocomplete="cc-number" card-number>
-                <input type="text" placeholder="Nombre en la Tarjeta" id="cc-name" name="cc-name"
-                    autocomplete="cc-name" card-name>
+        <form #newCardForm="ngForm" (ngSubmit)="addNewCard()" card container=".card-container"
+            card-width="{{cardWidth}}" [messages]="messages" [placeholders]="placeholders"
+            [masks]="masks" formatting="true" debug="true">
+            <div class="new-method-form">
+                <div class="card-container" [ngClass]="{'small': cardWidth === 300}"></div>
+                <!-- <form #newCardForm="ngForm" (ngSubmit)="addNewCard()" card container=".card-container"
+                card-width="{{cardWidth}}" [messages]="messages" [placeholders]="placeholders"
+                [masks]="masks" formatting="true" debug="true"> -->
+                <input [(ngModel)]="newCard.card_number" type="tel" inputmode="numeric" placeholder="Número de Tarjeta"
+                    id="cc-number" name="cc-number" autocomplete="cc-number" card-number>
+                <input [(ngModel)]="newCard.holder_name" type="text" placeholder="Nombre en la Tarjeta"
+                    id="cc-name" name="cc-name" autocomplete="cc-name" card-name>
                 <div class="exp-cvc">
-                    <input type="tel" placeholder="mm / aa" id="cc-exp" name="cc-exp" autocomplete="cc-exp"
-                        card-expiry>
-                    <input type="tel" placeholder="cvc" id="cc-csc" name="cc-csc" autocomplete="cc-csc"
-                        card-cvc>
+                    <input [(ngModel)]="newCardExp" type="tel" placeholder="mm / aa" id="cc-exp" name="cc-exp"
+                        autocomplete="cc-exp" card-expiry>
+                    <input [(ngModel)]="newCard.cvv2" type="tel" placeholder="cvc" id="cc-csc" name="cc-csc"
+                        autocomplete="cc-csc" card-cvc>
                 </div>
-            </form>
-            <!-- <form name="new-card-form" id="new-card-form" (ngSubmit)="addNewCard()" #newCardForm="ngForm">
-                <input type="text" name="cc-name" id="cc-name" autocomplete="cc-name">
+                <!-- </form> -->
+            </div>
 
-            </form> -->
-            <!-- <form name="my-form-name" id="my-form-id" action="https://my-website.com/cc-submit" method="post">
-                    Credit card number: <input autofocus="" type="text" name="CCNo"><br>
-                    Name on card: <input type="text" name="name"><br>
-                    Expiry Date: <select name="CCExpiresMonth">
-                      <option value="01">01</option>
-                      <option value="02">02</option>
-                      <option value="03">03</option>
-                      <option value="04">04</option>
-                      <option value="05">05</option>
-                      <option value="06">06</option>
-                      <option value="07">07</option>
-                      <option value="08">08</option>
-                      <option value="09">09</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                    </select>
-                    /
-                  <select name="CCExpiresYear">
-                      <option value="2016">2016</option>
-                      <option value="2017">2017</option>
-                      <option value="2018">2018</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                      <option value="2021">2021</option>
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
-                    </select>
-                    <br>
-                    CVC: <input name="cvc">
-                  <br>
-                    <input type="reset" value="Reset">
-                    <input type="submit" value="Submit">
-                  </form> -->
-        </div>
-
-        <div class="new-method-buttons">
-            <button type="button" class="btn-clear error ripple" (click)="cancel()">
-                Cancelar
-            </button>
-            <!-- <span class="vertical-div"></span> -->
-            <button type="button" class="btn-clear success ripple" (click)="addNewMethod()">
-                Agregar
-            </button>
-        </div>
+            <div class="new-method-buttons">
+                <button type="button" class="btn-clear error ripple" (click)="cancel()">
+                    Cancelar
+                </button>
+                <!-- <span class="vertical-div"></span> -->
+                <button type="submit" class="btn-clear success ripple">
+                    Agregar
+                </button>
+            </div>
+        </form>
     </div>
 </div>

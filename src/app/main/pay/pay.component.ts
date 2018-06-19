@@ -5,8 +5,8 @@ import { Establishment } from '../../core/api/models/api.establishment';
 import { PayService } from './pay.service';
 import { UIService } from '../../core/ui/ui.service';
 import { Subscription, Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Card } from '../../core/api/models/api.card';
+import { ApiService } from '../../core/api/api.service';
 
 @Component({
     selector: 'app-pay',
@@ -14,18 +14,24 @@ import { Card } from '../../core/api/models/api.card';
     styleUrls: ['./pay.component.css']
 })
 export class PayComponent implements OnInit, OnDestroy {
-    card: Card = new Card();
+
+    defaultCard$: Observable<Card>;
 
     amount: any;
     establishment: Establishment;
-    private routerEventsSubscription: Subscription;
-    private keyboardVisibilitySubscription: Subscription;
+
+    private routerEventsSubs: Subscription;
+    private keyboardVisibilitySubs: Subscription;
+
     inputFocused: boolean;
 
-    constructor(private payService: PayService, private uiService: UIService,
-        private router: Router, @Inject(LOCALE_ID) private locale: string) {
-        this.card.brand = 'Visa';
-        this.card.number = '1212';
+    constructor(
+        private apiService: ApiService,
+        private payService: PayService,
+        private uiService: UIService,
+        private router: Router,
+        @Inject(LOCALE_ID) private locale: string
+    ) {
     }
 
     ngOnInit() {
@@ -43,18 +49,20 @@ export class PayComponent implements OnInit, OnDestroy {
             return; */
         }
 
-        this.keyboardVisibilitySubscription = this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
+        this.defaultCard$ = this.apiService.getCardDefault();
+
+        this.keyboardVisibilitySubs = this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
             this.inputFocused = isKeyboardVisible;
         });
 
     }
 
     ngOnDestroy() {
-        if (this.routerEventsSubscription) {
-            this.routerEventsSubscription.unsubscribe();
+        if (this.routerEventsSubs) {
+            this.routerEventsSubs.unsubscribe();
         }
-        if (this.keyboardVisibilitySubscription) {
-            this.keyboardVisibilitySubscription.unsubscribe();
+        if (this.keyboardVisibilitySubs) {
+            this.keyboardVisibilitySubs.unsubscribe();
         }
     }
 

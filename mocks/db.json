@@ -3,7 +3,46 @@
         "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXItaWQiLCJuYW1lIjoiRmVybmFuZG8gTWl0cmUiLCJpYXQiOjE1MTYyMzkwMjIsInR0bCI6MTUzMDcwOTQyNH0.xrkuiq1h0D_qqj0t597KS_4l6KfFmyJ4SMzdi87wjU8",
         "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXItaWQiLCJuYW1lIjoiRmVybmFuZG8gTWl0cmUiLCJpYXQiOjE1MTYyMzkwMjIsInR0bCI6MTUzMDcwOTQyNH0.xrkuiq1h0D_qqj0t597KS_4l6KfFmyJ4SMzdi87wjU8"
     },
-    "users": [],
+    "users": [
+        {
+            "id": "me",
+            "username": "fernando@zale.mx"
+        }
+    ],
+    "cards": [
+        {
+            "userId": "me",
+            "default": true,
+            "id": "kxq1rpdymlcpxekvjsxm",
+            "card_number": "1118",
+            "holder_name": "Fernando Mitre",
+            "expiration_year": "15",
+            "expiration_month": "12",
+            "allows_charges": true,
+            "allows_payouts": true,
+            "creation_date": "2013-11-20T09:22:25-06:00",
+            "bank_name": "BBVA BANCOMER",
+            "bank_code": "012",
+            "type": "debit",
+            "brand": "mastercard"
+        },
+        {
+            "userId": "me",
+            "default": false,
+            "id": "kgjy0jiami01kkpdoywr",
+            "card_number": "1111",
+            "holder_name": "Fernando Mitre",
+            "expiration_year": "15",
+            "expiration_month": "12",
+            "allows_charges": true,
+            "allows_payouts": true,
+            "creation_date": "2013-11-19T13:26:12-06:00",
+            "bank_name": "BBVA BANCOMER",
+            "bank_code": "012",
+            "type": "debit",
+            "brand": "mastercard"
+        }
+    ],
     "establishments": [
         {
             "id": "EST0001",
