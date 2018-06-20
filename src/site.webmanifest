@@ -13,9 +13,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#eceff1",
-    "background_color": "#eceff1",
-    "start_url": "http://localhost:4200/index.html",
-    "display": "standalone",
-    "orientation": "portrait"
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "start_url": "http://local.zale.mx:4200/index.html",
+    "display": "standalone"
 }
