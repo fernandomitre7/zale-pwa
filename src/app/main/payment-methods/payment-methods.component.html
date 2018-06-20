@@ -12,12 +12,18 @@
 
 
     <div class="list elev-2dp">
-        <div class="list-row ripple" *ngFor="let card of cards">
-            <i class="material-icons">
-                payment
-            </i>
-            <span>{{ card.brand + ' ' + card.number }}</span>
-        </div>
+        <ng-container *ngIf="cards$; else loading">
+            <div class="list-row ripple" *ngFor="let card of cards$ | async">
+                <i class="material-icons">
+                    payment
+                </i>
+                <span>{{ card.brand | titlecase }} {{ card.card_number }}</span>
+            </div>
+        </ng-container>
+        <ng-template #loading>
+            <h1>. . .</h1>
+            <!-- TODO: Add loader component -->
+        </ng-template>
     </div>
 
     <button type="button" class="btn elev-2dp add-btn" (click)="showAddNewMethod()">

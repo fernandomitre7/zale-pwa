@@ -153,6 +153,24 @@ export class ApiService {
                 catchError(this.handleError)
             );
     }
+
+    createCard(card: Card): Observable<Card> {
+        // FOR TESTING PURPOSES ONLY, WITH SERVER UP AND RUNNING THE RETURNING CARD WILL BE OK
+        const brand = card.card_number.startsWith('4') ? 'visa' :
+            card.card_number.startsWith('5') ? 'mastercard' :
+                card.card_number.startsWith('5') ? 'amex' : 'discover';
+        card.brand = brand;
+
+        const nums = card.card_number.split(' ');
+        card.card_number = nums[nums.length - 1];
+
+        const url = `${this.API_VERSION}/users/me/cards`;
+        return this.http.post<Card>(url, card, this.httpOptions)
+            .pipe(
+                retry(2),
+                catchError(this.handleError)
+            );
+    }
 }
 
 export interface ApiObject {
