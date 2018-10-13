@@ -1,3 +1,10 @@
+@media screen and (max-width: 375px) and (max-device-height: 800px) {
+    .auth-container {
+        max-width: 70%;
+        margin: 15vh auto;
+    } 
+}
+
 .auth-container {
     max-width: 70%;
     margin: 15vh auto;

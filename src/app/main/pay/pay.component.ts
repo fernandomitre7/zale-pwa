@@ -92,4 +92,8 @@ export class PayComponent implements OnInit, OnDestroy {
         this.router.navigate(['/main/payment-methods']);
     }
 
+    validAmount(): boolean {
+        return this.amount && parseFloat(this.amount) > 0;
+    }
+
 }

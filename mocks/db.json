@@ -44,13 +44,13 @@
     },
     {
       "card_number": "4242",
-      "holder_name": "Fernando Mitre A",
+      "holder_name": "Fernando Mitre",
       "cvv2": "123",
-      "expiration_month": "06",
+      "expiration_month": "12",
       "expiration_year": "20",
       "brand": "visa",
       "userId": "me",
-      "id": "YC29nJv"
+      "id": "hkBIPoD"
     }
   ],
   "establishments": [

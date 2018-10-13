@@ -56,6 +56,8 @@ export class PaymentMethodsComponent implements OnInit {
     }
 
     async cancel() {
+        this.newCard = new Card();
+        this.newCardExp = '';
         await wait(150);
         this.addingNewMethod = false;
     }

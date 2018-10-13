@@ -28,7 +28,7 @@
 
         <div class="input-group" [ngClass]="{'hidden': !isRegistration}">
             <div class="input-icon">
-                <i class="material-icons">
+                <i class="material-icons" [ngClass]="{'valid': password.valid }">
                     lock
                 </i>
                 <input type="password" placeholder=" Confirmar Contraseña" autocomplete="off" id="confirm-password"
