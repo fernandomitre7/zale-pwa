@@ -1,21 +1,10 @@
 import { Injectable } from '@angular/core';
-import {
-    HttpClient,
-    HttpHeaders,
-    HttpErrorResponse,
-    HttpParams
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry, tap, map } from 'rxjs/operators';
-import {
-    ApiError,
-    ErrorClientStatus,
-    UserAuth,
-    Tokens,
-    User
-} from './models';
+import { ApiError, ErrorClientStatus, UserAuth, Tokens, User } from './models';
 import { Establishment } from './models/api.establishment';
 import { Card } from './models/api.card';
 
@@ -80,13 +69,8 @@ export class ApiService {
     createTokens(userAuth: UserAuth): Observable<Tokens> {
         const url = `${this.API_VERSION}/tokens`;
         let method: Observable<Tokens>;
-        // NOTE: This is only in the meantime Local/Dev backend is not ready
-        if (environment.production) {
-            method = this.http.post<Tokens>(url, userAuth, this.httpOptions);
-        } else {
-            method = this.http.get<Tokens>(url, this.httpOptions);
-        }
-        return method
+
+        return  this.http.post<Tokens>(url, userAuth, this.httpOptions)
             .pipe(
                 retry(2), // retry 2 times
                 tap((tokens: Tokens) => {

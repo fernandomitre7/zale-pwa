@@ -1,198 +1,194 @@
 {
-  "tokens": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXItaWQiLCJuYW1lIjoiRmVybmFuZG8gTWl0cmUiLCJpYXQiOjE1MTYyMzkwMjIsInR0bCI6MTUzMDcwOTQyNH0.xrkuiq1h0D_qqj0t597KS_4l6KfFmyJ4SMzdi87wjU8",
-    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXItaWQiLCJuYW1lIjoiRmVybmFuZG8gTWl0cmUiLCJpYXQiOjE1MTYyMzkwMjIsInR0bCI6MTUzMDcwOTQyNH0.xrkuiq1h0D_qqj0t597KS_4l6KfFmyJ4SMzdi87wjU8"
-  },
-  "users": [
-    {
-      "id": "me",
-      "username": "fernando@zale.mx"
-    }
-  ],
-  "cards": [
-    {
-      "userId": "me",
-      "default": true,
-      "id": "kxq1rpdymlcpxekvjsxm",
-      "card_number": "1118",
-      "holder_name": "Fernando Mitre",
-      "expiration_year": "15",
-      "expiration_month": "12",
-      "allows_charges": true,
-      "allows_payouts": true,
-      "creation_date": "2013-11-20T09:22:25-06:00",
-      "bank_name": "BBVA BANCOMER",
-      "bank_code": "012",
-      "type": "debit",
-      "brand": "mastercard"
-    },
-    {
-      "userId": "me",
-      "default": false,
-      "id": "kgjy0jiami01kkpdoywr",
-      "card_number": "1111",
-      "holder_name": "Fernando Mitre",
-      "expiration_year": "15",
-      "expiration_month": "12",
-      "allows_charges": true,
-      "allows_payouts": true,
-      "creation_date": "2013-11-19T13:26:12-06:00",
-      "bank_name": "BBVA BANCOMER",
-      "bank_code": "012",
-      "type": "debit",
-      "brand": "mastercard"
-    },
-    {
-      "card_number": "4242",
-      "holder_name": "Fernando Mitre",
-      "cvv2": "123",
-      "expiration_month": "12",
-      "expiration_year": "20",
-      "brand": "visa",
-      "userId": "me",
-      "id": "hkBIPoD"
-    }
-  ],
-  "establishments": [
-    {
-      "id": "EST0001",
-      "type": "restaurant",
-      "display_name": "Il Gardiano",
-      "search_name": "il gardiano",
-      "description": "En Il Mercato Gentiloni"
-    },
-    {
-      "id": "EST0002",
-      "type": "library",
-      "display_name": "Gandhi",
-      "search_name": "gandhi",
-      "description": "Tu pones las ganas de leer"
-    },
-    {
-      "id": "EST0003",
-      "type": "generic-store",
-      "display_name": "Tiendita",
-      "search_name": "tiendita",
-      "description": "De la esquina"
-    },
-    {
-      "id": "EST0004",
-      "type": "market",
-      "display_name": "Supermercado",
-      "search_name": "supermercado",
-      "description": "Productos locales"
-    },
-    {
-      "id": "EST0005",
-      "type": "cafe",
-      "display_name": "Venenito Café",
-      "search_name": "venenito cafe",
-      "description": "¿Apoco no se te antoja un cafecito?"
-    },
-    {
-      "id": "EST0006",
-      "type": "bar",
-      "display_name": "La Cantina",
-      "search_name": "la cantina",
-      "description": "En Il Mercato Gentiloni"
-    },
-    {
-      "id": "EST0007",
-      "type": "apparel",
-      "display_name": "Tienda de Ropa",
-      "search_name": "tienda de ropa",
-      "description": "Estamos en oferta"
-    },
-    {
-      "id": "EST0008",
-      "type": "fastfood",
-      "display_name": "Hamburguesas al Carbón",
-      "search_name": "hamburguesas al carbón",
-      "description": "Las mejores de Saltillo"
-    },
-    {
-      "id": "EST0009",
-      "type": "pizzeria",
-      "display_name": "Capricciosas Rufino Tamayo",
-      "search_name": "capricciosas rufino tamayo",
-      "description": "Pizza Gourmet"
-    },
-    {
-      "id": "EST0010",
-      "type": "gas-station",
-      "display_name": "Oxxo Gas",
-      "search_name": "oxxo gas",
-      "description": "Pioneros"
-    },
-    {
-      "id": "EST0011",
-      "type": "restaurant",
-      "display_name": "Il Gardiano",
-      "search_name": "il gardiano",
-      "description": "En Il Mercato Gentiloni"
-    },
-    {
-      "id": "EST0012",
-      "type": "library",
-      "display_name": "Gandhi",
-      "search_name": "gandhi",
-      "description": "Tu pones las ganas de leer"
-    },
-    {
-      "id": "EST0013",
-      "type": "generic-store",
-      "display_name": "Tiendita",
-      "search_name": "tiendita",
-      "description": "De la esquina"
-    },
-    {
-      "id": "EST0014",
-      "type": "market",
-      "display_name": "Supermercado",
-      "search_name": "supermercado",
-      "description": "Productos locales"
-    },
-    {
-      "id": "EST0015",
-      "type": "cafe",
-      "display_name": "Venenito Café",
-      "search_name": "venenito cafe",
-      "description": "¿Apoco no se te antoja un cafecito?"
-    },
-    {
-      "id": "EST0016",
-      "type": "bar",
-      "display_name": "La Cantina",
-      "search_name": "la cantina",
-      "description": "En Il Mercato Gentiloni"
-    },
-    {
-      "id": "EST0017",
-      "type": "apparel",
-      "display_name": "Tienda de Ropa",
-      "search_name": "tienda de ropa",
-      "description": "Estamos en oferta"
-    },
-    {
-      "id": "EST0018",
-      "type": "fastfood",
-      "display_name": "Hamburguesas al Carbón",
-      "search_name": "hamburguesas al carbón",
-      "description": "Las mejores de Saltillo"
-    },
-    {
-      "id": "EST0019",
-      "type": "pizzeria",
-      "display_name": "Capricciosas Rufino Tamayo",
-      "search_name": "capricciosas rufino tamayo",
-      "description": "Pizza Gourmet"
-    },
-    {
-      "id": "EST0020",
-      "type": "gas-station",
-      "display_name": "Oxxo Gas",
-      "search_name": "oxxo gas",
-      "description": "Pioneros"
-    }
-  ]
+    "users": [
+        {
+            "id": "me",
+            "username": "fernando@zale.mx"
+        }
+    ],
+    "cards": [
+        {
+            "userId": "me",
+            "default": true,
+            "id": "kxq1rpdymlcpxekvjsxm",
+            "card_number": "1118",
+            "holder_name": "Fernando Mitre",
+            "expiration_year": "15",
+            "expiration_month": "12",
+            "allows_charges": true,
+            "allows_payouts": true,
+            "creation_date": "2013-11-20T09:22:25-06:00",
+            "bank_name": "BBVA BANCOMER",
+            "bank_code": "012",
+            "type": "debit",
+            "brand": "mastercard"
+        },
+        {
+            "userId": "me",
+            "default": false,
+            "id": "kgjy0jiami01kkpdoywr",
+            "card_number": "1111",
+            "holder_name": "Fernando Mitre",
+            "expiration_year": "15",
+            "expiration_month": "12",
+            "allows_charges": true,
+            "allows_payouts": true,
+            "creation_date": "2013-11-19T13:26:12-06:00",
+            "bank_name": "BBVA BANCOMER",
+            "bank_code": "012",
+            "type": "debit",
+            "brand": "mastercard"
+        },
+        {
+            "card_number": "4242",
+            "holder_name": "Fernando Mitre",
+            "cvv2": "123",
+            "expiration_month": "12",
+            "expiration_year": "20",
+            "brand": "visa",
+            "userId": "me",
+            "id": "hkBIPoD"
+        }
+    ],
+    "establishments": [
+        {
+            "id": "EST0001",
+            "type": "restaurant",
+            "display_name": "Il Gardiano",
+            "search_name": "il gardiano",
+            "description": "En Il Mercato Gentiloni"
+        },
+        {
+            "id": "EST0002",
+            "type": "library",
+            "display_name": "Gandhi",
+            "search_name": "gandhi",
+            "description": "Tu pones las ganas de leer"
+        },
+        {
+            "id": "EST0003",
+            "type": "generic-store",
+            "display_name": "Tiendita",
+            "search_name": "tiendita",
+            "description": "De la esquina"
+        },
+        {
+            "id": "EST0004",
+            "type": "market",
+            "display_name": "Supermercado",
+            "search_name": "supermercado",
+            "description": "Productos locales"
+        },
+        {
+            "id": "EST0005",
+            "type": "cafe",
+            "display_name": "Venenito Café",
+            "search_name": "venenito cafe",
+            "description": "¿Apoco no se te antoja un cafecito?"
+        },
+        {
+            "id": "EST0006",
+            "type": "bar",
+            "display_name": "La Cantina",
+            "search_name": "la cantina",
+            "description": "En Il Mercato Gentiloni"
+        },
+        {
+            "id": "EST0007",
+            "type": "apparel",
+            "display_name": "Tienda de Ropa",
+            "search_name": "tienda de ropa",
+            "description": "Estamos en oferta"
+        },
+        {
+            "id": "EST0008",
+            "type": "fastfood",
+            "display_name": "Hamburguesas al Carbón",
+            "search_name": "hamburguesas al carbón",
+            "description": "Las mejores de Saltillo"
+        },
+        {
+            "id": "EST0009",
+            "type": "pizzeria",
+            "display_name": "Capricciosas Rufino Tamayo",
+            "search_name": "capricciosas rufino tamayo",
+            "description": "Pizza Gourmet"
+        },
+        {
+            "id": "EST0010",
+            "type": "gas-station",
+            "display_name": "Oxxo Gas",
+            "search_name": "oxxo gas",
+            "description": "Pioneros"
+        },
+        {
+            "id": "EST0011",
+            "type": "restaurant",
+            "display_name": "Il Gardiano",
+            "search_name": "il gardiano",
+            "description": "En Il Mercato Gentiloni"
+        },
+        {
+            "id": "EST0012",
+            "type": "library",
+            "display_name": "Gandhi",
+            "search_name": "gandhi",
+            "description": "Tu pones las ganas de leer"
+        },
+        {
+            "id": "EST0013",
+            "type": "generic-store",
+            "display_name": "Tiendita",
+            "search_name": "tiendita",
+            "description": "De la esquina"
+        },
+        {
+            "id": "EST0014",
+            "type": "market",
+            "display_name": "Supermercado",
+            "search_name": "supermercado",
+            "description": "Productos locales"
+        },
+        {
+            "id": "EST0015",
+            "type": "cafe",
+            "display_name": "Venenito Café",
+            "search_name": "venenito cafe",
+            "description": "¿Apoco no se te antoja un cafecito?"
+        },
+        {
+            "id": "EST0016",
+            "type": "bar",
+            "display_name": "La Cantina",
+            "search_name": "la cantina",
+            "description": "En Il Mercato Gentiloni"
+        },
+        {
+            "id": "EST0017",
+            "type": "apparel",
+            "display_name": "Tienda de Ropa",
+            "search_name": "tienda de ropa",
+            "description": "Estamos en oferta"
+        },
+        {
+            "id": "EST0018",
+            "type": "fastfood",
+            "display_name": "Hamburguesas al Carbón",
+            "search_name": "hamburguesas al carbón",
+            "description": "Las mejores de Saltillo"
+        },
+        {
+            "id": "EST0019",
+            "type": "pizzeria",
+            "display_name": "Capricciosas Rufino Tamayo",
+            "search_name": "capricciosas rufino tamayo",
+            "description": "Pizza Gourmet"
+        },
+        {
+            "id": "EST0020",
+            "type": "gas-station",
+            "display_name": "Oxxo Gas",
+            "search_name": "oxxo gas",
+            "description": "Pioneros"
+        }
+    ]
 }

@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ApiService } from '../core/api/api.service';
-import {
-    ApiError,
-    UserAuth,
-    User,
-    Tokens
-} from '../core/api/models';
+import { ApiError, UserAuth, User, Tokens } from '../core/api/models';
 
 @Injectable({
     providedIn: 'root'
@@ -60,7 +55,5 @@ export class AuthService {
                 catchError(this.handleApiError)
             );
     }
-
-
 
 }
