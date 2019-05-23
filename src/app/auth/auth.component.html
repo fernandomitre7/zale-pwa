@@ -1,5 +1,8 @@
 <div class="auth-container">
     <img src="/assets/logo_green_lg.png" width="128">
+
+    <div [hidden]="!error || error.length === 0" class="form-error">{{ error }}</div>
+
     <form (ngSubmit)="submit()" #signInForm="ngForm">
 
         <div class="input-group">
@@ -7,11 +10,11 @@
                 <i class="material-icons" [ngClass]="{'valid': username.valid }">
                     email
                 </i>
-                <input type="email" placeholder=" Correo electrónico" autocomplete="email" id="username"
-                    required [(ngModel)]="user.username" name="username" #username="ngModel"
-                    [email]="true">
+                <input type="email" placeholder=" Correo electrónico" autocomplete="email" id="username" required
+                    [(ngModel)]="user.username" name="username" #username="ngModel" [email]="true">
             </div>
-            <div [hidden]="username.valid || username.pristine || username.untouched" class="input-error">Usuario es requerido y debe ser un correo electrónico</div>
+            <div [hidden]="username.valid || username.pristine || username.untouched" class="input-error">Usuario es
+                requerido y debe ser un correo electrónico</div>
         </div>
 
         <div class="input-group">
@@ -19,11 +22,11 @@
                 <i class="material-icons" [ngClass]="{'valid': password.valid }">
                     lock
                 </i>
-                <input type="password" placeholder=" Contraseña" autocomplete="current-password"
-                    id="password" required [(ngModel)]="user.password" name="password"
-                    #password="ngModel">
+                <input type="password" placeholder=" Contraseña" autocomplete="current-password" id="password" required
+                    [(ngModel)]="user.password" name="password" #password="ngModel">
             </div>
-            <div [hidden]="password.valid || password.pristine || password.untouched" class="input-error">Contraseña es requerida</div>
+            <div [hidden]="password.valid || password.pristine || password.untouched" class="input-error">Contraseña es
+                requerida</div>
         </div>
 
         <div class="input-group" [ngClass]="{'hidden': !isRegistration}">
@@ -35,10 +38,12 @@
                     [required]="isRegistration" [(ngModel)]="user.confirm_password" name="confirm-password"
                     #confirmPassword="ngModel">
             </div>
-            <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-dange">Contraseña es requerida</div>
+            <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="input-error">Contraseña es
+                requerida</div>
         </div>
 
-        <button [disabled]="submitting || !signInForm.form.valid" type="submit" class="btn elev-2dp">{{ isRegistration? 'Registrar' : 'Iniciar Sesión'}}</button>
+        <button [disabled]="submitting || !signInForm.form.valid" type="submit"
+            class="btn elev-2dp">{{ isRegistration? 'Registrar' : 'Iniciar Sesión'}}</button>
 
         <!-- <button type="button" class="btn">Iniciar Sesión</button> -->
         <br>

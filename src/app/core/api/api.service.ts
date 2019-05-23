@@ -4,7 +4,7 @@ import { CoreModule } from '../core.module';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry, tap, map } from 'rxjs/operators';
-import { ApiError, ErrorClientStatus, UserAuth, Tokens, User } from './models';
+import { ApiError, ErrorStatus, UserAuth, Tokens, User } from './models';
 import { Establishment } from './models/api.establishment';
 import { Card } from './models/api.card';
 
@@ -42,20 +42,22 @@ export class ApiService {
      */
     private handleError(error: HttpErrorResponse) {
         const apiError = new ApiError();
+        let msg: string;
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error.message);
-            apiError.message = error.error.message;
-            apiError.status = ErrorClientStatus;
+            apiError.status = ErrorStatus.ClientError;
+            apiError.message = 'Ocurrio un error en la red.';
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
             console.error(
                 `Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`);
-            apiError.message = error.message;
+                `body was: ${JSON.stringify(error.error)}`);
             apiError.status = error.status;
+            apiError.message = error.error.message;
         }
+
         // return an observable with a user-facing error message
         return throwError(apiError);
     }
@@ -67,10 +69,10 @@ export class ApiService {
      * @param {UserAuth} userAuth the User to authenticate
      */
     createTokens(userAuth: UserAuth): Observable<Tokens> {
-        const url = `${this.API_VERSION}/tokens`;
+        const url = `${this.API_VERSION}/auth/tokens`;
         let method: Observable<Tokens>;
 
-        return  this.http.post<Tokens>(url, userAuth, this.httpOptions)
+        return this.http.post<Tokens>(url, userAuth, this.httpOptions)
             .pipe(
                 retry(2), // retry 2 times
                 tap((tokens: Tokens) => {

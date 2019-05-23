@@ -12,6 +12,7 @@ export class AuthComponent implements OnInit {
     user: AuthUser;
     submitting: boolean;
     isRegistration: boolean;
+    error: string;
 
     constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,6 +24,7 @@ export class AuthComponent implements OnInit {
 
 
     submit() {
+        this.error = null;
         if (this.isRegistration) {
             this.registerNewUser(this.user);
         } else {
@@ -47,18 +49,23 @@ export class AuthComponent implements OnInit {
         }
         this.submitting = true;
         this.authService.login(this.user.username, this.user.password)
-            .subscribe((success: string) => {
-                console.log('signIn succesful! msg: %s', success);
-                const redirectURL = this.authService.redirectURL ?
-                    this.authService.redirectURL : '/main';
-                this.router.navigate([redirectURL]);
-            }, (err: string) => {
-                console.error('signIn Error: %s', err);
-            }, () => {
-                console.log('signIn Completed, remove spinner');
-                this.submitting = false;
+            .subscribe({
+                next: (success: string) => {
+                    console.log('signIn succesful! msg: %s', success);
+                    const redirectURL = this.authService.redirectURL ?
+                        this.authService.redirectURL : '/main';
+                    this.router.navigate([redirectURL]);
+                },
+                error: (err: string) => {
+                    console.error('signIn Error: %s', err);
+                    this.error = err;
+                    this.submitting = false;
+                },
+                complete: () => {
+                    console.log('signIn Completed, remove spinner');
+                    this.submitting = false;
+                }
             });
-
     }
 
     private registerNewUser(user: AuthUser) {

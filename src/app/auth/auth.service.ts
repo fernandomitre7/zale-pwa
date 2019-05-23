@@ -17,11 +17,6 @@ export class AuthService {
         return true; // this.api.hasAuthorization();
     }
 
-    private handleApiError(err: ApiError) {
-        const errMsg = `Inicio de sesión falló: ${err.message}`;
-        return throwError(errMsg);
-    }
-
     public login(username, password: string): Observable<string> {
         const userAuth = new UserAuth(username, password);
         return this.api.createTokens(userAuth)
@@ -31,7 +26,9 @@ export class AuthService {
                     console.log('AuthService:login() tokens: %o', tokens);
                     return 'Inicio de sesión exitoso.';
                 }),
-                catchError(this.handleApiError)
+                catchError((err: ApiError) => {
+                    return throwError(err.message);
+                })
             );
     }
 
@@ -52,7 +49,9 @@ export class AuthService {
                     console.log('AuthService:register() New User: %o', newUser);
                     return 'Registro exitoso';
                 }),
-                catchError(this.handleApiError)
+                catchError((err: ApiError) => {
+                    return throwError(err.message);
+                })
             );
     }
 

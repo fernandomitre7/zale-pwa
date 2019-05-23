@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "npm run serve && npm run mock-server",
+        "start": "npm run mock-server & npm run serve",
         "serve": "ng serve --proxy-config proxy.conf.json",
         "mock-server": "node mocks/server.js",
         "build": "ng build",
