@@ -14,18 +14,15 @@
     text-decoration: underline var(--secondary-color);
 } */
 
-.pay-question {
-    font-weight: normal;
-    font-size: 2.5rem;
-    text-align: center;
+.title {
     margin-top: 20vmin;
 }
 
-.pay-question.focused {
+.title.focused {
     margin-top: 10vmin;
 }
 
-.pay-question .name {
+.title .name {
     font-weight: bold;
     color: var(--secondary-color);
 }
@@ -57,3 +54,15 @@
     text-align: center;
     text-decoration: underline var(--secondary-color);
 }
+
+.confirm {
+    max-width: 90vw;
+    margin: auto;
+    /* min-height: 250px;
+    display: flex; */
+}
+
+.confirm-details {
+    margin-bottom: 2rem;
+}
+

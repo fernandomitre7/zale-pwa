@@ -7,6 +7,8 @@ import { catchError, retry, tap, map } from 'rxjs/operators';
 import { ApiError, ErrorStatus, UserAuth, Tokens, User } from './models';
 import { Establishment } from './models/api.establishment';
 import { Card } from './models/api.card';
+import { Transaction } from './models/api.transaction';
+import { Receipt } from './models/api.receipt';
 
 @Injectable({
     providedIn: CoreModule
@@ -18,22 +20,30 @@ export class ApiService {
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
-        })
+        }),
+        withCredentials: true
     };
 
     constructor(private http: HttpClient) {
         this.API_VERSION = environment.apiVersion;
     }
-
+    private is_auth = false;
     hasAuthorization(): boolean {
-        const auth = this.httpOptions.headers.get('Authorization');
-        return !!auth;
+        /* const auth = this.httpOptions.headers.get('Authorization');
+        console.log(`ApiService hasAuthorization: ${!!auth}`);
+        return !!auth; */
+        return this.is_auth;
     }
     removeAuthorization() {
-        this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
+        /*         this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
+         */
+        this.is_auth = false;
     }
-    setAuthorization(token: string) {
+    setAuthorization() {
+        /* console.log(`ApiService setAuthorization: ${token}`);
         this.httpOptions.headers = this.httpOptions.headers.set('Authorization', `Bearer ${token}`);
+        console.log('ApiService setAuthorization: %o', this.httpOptions.headers); */
+        this.is_auth = true;
     }
     /**
      * Handles an error comming from the httClient
@@ -76,7 +86,7 @@ export class ApiService {
             .pipe(
                 retry(2), // retry 2 times
                 tap((tokens: Tokens) => {
-                    this.setAuthorization(tokens.access_token);
+                    this.setAuthorization();
                 }),
                 catchError(this.handleError)
             );
@@ -108,8 +118,10 @@ export class ApiService {
         if (search_name && search_name.length > 0) {
             const options = search_name !== '*' ? {
                 params: new HttpParams().set('q', search_name),
-                headers: this.httpOptions.headers
+                headers: this.httpOptions.headers,
+                withCredentials: this.httpOptions.withCredentials
             } : this.httpOptions;
+            console.log('ApiService:getEstablishments() options %o', options);
             return this.http.get<Establishment[]>(url, options)
                 .pipe(
                     catchError(this.handleError)
@@ -154,6 +166,36 @@ export class ApiService {
         return this.http.post<Card>(url, card, this.httpOptions)
             .pipe(
                 retry(2),
+                catchError(this.handleError)
+            );
+    }
+
+    makeTransaction(card: Card, establishment: Establishment, amount: string): Observable<Receipt> {
+        const t = new Transaction();
+        t.payment_method_id = card.id;
+        t.establishment_id = establishment.id;
+        t.amout = amount;
+        const url = `${this.API_VERSION}/users/me/transactions`;
+        return this.http.post<Receipt>(url, t, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getReceipts(): Observable<Receipt[]> {
+        const url = `${this.API_VERSION}/users/me/receipts`;
+
+        return this.http.get<Receipt[]>(url, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getReceipt(receiptID: string): Observable<Receipt> {
+        const url = `${this.API_VERSION}/users/me/receipts/${receiptID}`;
+
+        return this.http.get<Receipt>(url, this.httpOptions)
+            .pipe(
                 catchError(this.handleError)
             );
     }

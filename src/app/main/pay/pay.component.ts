@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, LOCALE_ID, Inject, ViewChild } from '@angular/core';
 import { formatNumber } from '@angular/common';
-import { Router, ParamMap, Event, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
 import { Establishment } from '../../core/api/models/api.establishment';
 import { PayService } from './pay.service';
-import { UIService } from '../../core/ui/ui.service';
-import { Subscription, Observable, Subject } from 'rxjs';
-import { Card } from '../../core/api/models/api.card';
+import { Subscription } from 'rxjs';
 import { ApiService } from '../../core/api/api.service';
+import { Card, Receipt, ApiError } from 'src/app/core/api/models';
+import { UIService, getIcon } from 'src/app/core/ui';
 
 @Component({
     selector: 'app-pay',
@@ -15,13 +15,15 @@ import { ApiService } from '../../core/api/api.service';
 })
 export class PayComponent implements OnInit, OnDestroy {
 
-    defaultCard$: Observable<Card>;
-
+    paymentSubmitted: boolean = false;
     amount: any;
     establishment: Establishment;
+    card: Card;
+    error: string;
 
     private routerEventsSubs: Subscription;
     private keyboardVisibilitySubs: Subscription;
+    private cardSubs: Subscription;
 
     inputFocused: boolean;
 
@@ -30,26 +32,32 @@ export class PayComponent implements OnInit, OnDestroy {
         private payService: PayService,
         private uiService: UIService,
         private router: Router,
-        @Inject(LOCALE_ID) private locale: string
-    ) {
+        @Inject(LOCALE_ID) private locale: string) {
     }
 
     ngOnInit() {
         this.establishment = this.payService.getEstablishmentToUse();
-        console.log('PayComponent: Establishment = %o', this.establishment);
-        if (!this.establishment) {
-            this.establishment = <Establishment>{
-                id: 'EST0005',
-                type: 'cafe',
-                display_name: 'Venenito Café',
-                search_name: 'venenito cafe',
-                description: '¿Apoco no se te antoja un cafecito?'
-            };
-            /* this.router.navigate(['/main']);
-            return; */
-        }
+        this.card = this.payService.getCardToTuse();
 
-        this.defaultCard$ = this.apiService.getCardDefault();
+        console.log('PayComponent: Establishment = %o', this.establishment);
+        console.log('PayComponent: card = %o', this.card);
+
+        if (!this.establishment) {
+            /*       this.establishment = <Establishment>{
+                      id: 'EST0005',
+                      type: 'cafe',
+                      display_name: 'Venenito Café',
+                      search_name: 'venenito cafe',
+                      description: '¿Apoco no se te antoja un cafecito?'
+                  }; */
+            this.router.navigate(['/main']);
+            return;
+        }
+        if (!this.card) {
+            this.cardSubs = this.apiService.getCardDefault().subscribe((card: Card) => {
+                this.card = card;
+            });
+        }
 
         this.keyboardVisibilitySubs = this.uiService.onKeyboardVisible().subscribe(isKeyboardVisible => {
             this.inputFocused = isKeyboardVisible;
@@ -63,6 +71,9 @@ export class PayComponent implements OnInit, OnDestroy {
         }
         if (this.keyboardVisibilitySubs) {
             this.keyboardVisibilitySubs.unsubscribe();
+        }
+        if (this.cardSubs) {
+            this.cardSubs.unsubscribe();
         }
     }
 
@@ -80,6 +91,8 @@ export class PayComponent implements OnInit, OnDestroy {
         }
     }
 
+    getIcon = getIcon
+
     showContinue() {
         console.log('ShowContinue()');
     }
@@ -94,6 +107,30 @@ export class PayComponent implements OnInit, OnDestroy {
 
     validAmount(): boolean {
         return this.amount && parseFloat(this.amount) > 0;
+    }
+
+    startPayment() {
+        console.log('PayComponent: startPayment()');
+        this.paymentSubmitted = true;
+    }
+
+    confirmPayment() {
+        this.uiService.showLoading();
+        this.apiService.makeTransaction(this.card, this.establishment, this.amount)
+            .subscribe({
+                next: (receipt: Receipt) => {
+                    this.payService.setReceipt(receipt);
+                    this.router.navigate(['/main/receipts', receipt.id, { successful: true }]);
+                },
+                error: (err: ApiError) => {
+                    console.error('PayComponent:confirmPayment err = %o', err);
+                    this.error = err.message;
+                    this.uiService.hideLoading();
+                },
+                complete: () => {
+                    this.uiService.hideLoading();
+                }
+            });
     }
 
 }

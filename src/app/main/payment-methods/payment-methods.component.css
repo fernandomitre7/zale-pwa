@@ -1,24 +1,8 @@
 .title {
-    font-weight: normal;
+    /* font-weight: normal;
     font-size: 2rem;
-    text-align: center;
+    text-align: center; */
     margin-top: 10vmin;
-}
-
-.list {
-    background-color: var(--primary-color-light);
-    /* max-width: 80%; */
-    /* margin: auto; */
-}
-.list .list-row {
-    display: flex;
-    padding: 1rem 0rem 1rem 1.8rem;
-    align-items: center;
-    font-size: 1.2rem;
-}
-
-.list-row i {
-    margin-right: 0.8rem;
 }
 
 .add-btn {
@@ -36,7 +20,13 @@
     display: flex;
     flex-direction: column;
     min-height: 30vh;
+    max-width: 90vw;
+    margin-right: auto;
+    margin-left: auto;
     background-color: var(--primary-color-light);
+}
+.card-container {
+    margin-top:1rem;
 }
 .new-method-form {
     flex-grow: 1;
@@ -46,9 +36,9 @@
     margin-bottom: 2rem;
 }
 
-.new-method-form .card-container.small {
+/* .new-method-form .card-container.small {
     margin-left: -2rem;
-}
+} */
 
 .new-method-form input {
     background-color: var(--primary-color-light);

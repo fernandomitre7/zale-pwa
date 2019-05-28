@@ -1,3 +1,26 @@
-<p>
-  receipts works!
-</p>
+<h1 class="title">
+  Tus Recibos
+</h1>
+
+<div [hidden]="!error || error.length === 0" class="form-error">
+  {{ error }}
+</div>
+
+<div class="list elev-1dp">
+  <div *ngFor="let receipt of receipts$ | async" class="list-row" (click)="viewDetails(receipt)">
+    <div class="row-icon">
+      <fa-icon [icon]="['fab', 'cc-' + receipt.payment_method.brand]"></fa-icon>
+    </div>
+    <div class="row-text">
+      <div class="row-text-primary">
+        {{ receipt.establishment.display_name }}
+      </div>
+      <div class="row-text-secondary">
+        {{ receipt.created_date | date:'dd/MM/yy hh:mm a' }}
+      </div>
+    </div>
+    <div class="row-right">
+      {{ '$' + receipt.amount }}
+    </div>
+  </div>
+</div>

@@ -11,15 +11,27 @@ import { FormsModule } from '@angular/forms';
 import { PayComponent } from './pay/pay.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { CardModule } from 'ngx-card/ngx-card';
+import { ReceiptDetailComponent } from './receipts/receipt-detail/receipt-detail.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
     imports: [
         CommonModule,
+        FontAwesomeModule,
         FormsModule,
-        MainRoutingModule,
         CardModule,
-        CoreModule
+        CoreModule,
+        MainRoutingModule,
     ],
-    declarations: [MainComponent, SearchComponent, ReceiptsComponent, AccountComponent, PayComponent, PaymentMethodsComponent]
+    declarations: [
+        MainComponent,
+        SearchComponent,
+        ReceiptsComponent,
+        AccountComponent,
+        PayComponent,
+        PaymentMethodsComponent,
+        ReceiptDetailComponent
+    ]
 })
 export class MainModule { }

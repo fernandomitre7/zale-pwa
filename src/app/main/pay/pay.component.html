@@ -1,40 +1,90 @@
-<div class="return ripple" (click)="back()">
-    <i class="material-icons">
-        arrow_back
-    </i>
-    <span>Busca otro lugar donde pagar</span>
+<div [hidden]="paymentSubmitted">
+    <div class="return" (click)="back()">
+        <i class="material-icons">
+            arrow_back
+        </i>
+        <span>Busca otro lugar donde pagar</span>
+    </div>
+
+    <h1 class="title" [ngClass]="{ 'focused': inputFocused }">
+        ¿Cuánto quieres pagar en
+        <span class="name">{{establishment?.display_name}}</span>?
+    </h1>
+
+    <form (ngSubmit)="amountInput.blur()" #currencyForm="ngForm">
+        <div class="currency-input" [ngClass]="{ 'focused': inputFocused }">
+            <i class="material-icons">
+                attach_money
+            </i>
+            <input #amountInput type="number" name="amount" id="amount" placeholder="0.00" autocomplete="off" min="0"
+                step="0.01" pattern="[0-9]*" (focus)="onCurrencyFocus()" (blur)="onCurrencyBlur()" [(ngModel)]="amount">
+        </div>
+    </form>
+
+    <!-- <button [disabled]="!validAmount()" *ngIf="(card$ | async) as card; else loading" type="button"
+        class="btn elev-2dp pay-btn"> -->
+    <button (click)="startPayment()" [disabled]="!validAmount()" *ngIf="card; else loading" type="button"
+        class="btn elev-2dp pay-btn">
+        <i class="material-icons">
+            payment
+        </i>
+        <p>Pagar usando
+            <em>{{ card.brand | titlecase }} {{ card.card_number }}</em>
+        </p>
+    </button>
+    <ng-template #loading>
+        <button disabled type="button" class="btn elev-2dp pay-btn">
+            <p>. . .</p>
+        </button>
+    </ng-template>
+    <div class="pay-other-method" (click)="changePaymentMethod()">
+        Usar otro método de pago
+    </div>
 </div>
 
-<h1 class="pay-question" [ngClass]="{ 'focused': inputFocused }">
-    ¿Cuánto quieres pagar en
-    <span class="name">{{establishment?.display_name}}</span>?
-</h1>
-
-<form (ngSubmit)="amountInput.blur()" #currencyForm="ngForm">
-    <div class="currency-input" [ngClass]="{ 'focused': inputFocused }">
+<div *ngIf="paymentSubmitted">
+    <div class="return" (click)="back()">
         <i class="material-icons">
-            attach_money
+            arrow_back
         </i>
-        <input #amountInput type="number" name="amount" id="amount" placeholder="0.00" autocomplete="off"
-            min="0" step="0.01" pattern="[0-9]*" (focus)="onCurrencyFocus()" (blur)="onCurrencyBlur()"
-            [(ngModel)]="amount">
+        <span>Cancelar</span>
     </div>
-</form>
 
-<button [disabled]="!validAmount()" *ngIf="(defaultCard$ | async) as card; else loading"
-    type="button" class="btn elev-2dp pay-btn">
-    <i class="material-icons">
-        payment
-    </i>
-    <p>Pagar usando
-        <em>{{ card.brand | titlecase }} {{ card.card_number }}</em>
-    </p>
-</button>
-<ng-template #loading>
-    <button disabled type="button" class="btn elev-2dp pay-btn">
-        <p>. . .</p>
-    </button>
-</ng-template>
-<div class="pay-other-method" (click)="changePaymentMethod()">
-    Usar otro método de pago
+    <h1 class="title">
+        Confirmar
+    </h1>
+    <div [hidden]="!error || error.length === 0" class="form-error">
+        {{ error }}
+    </div>
+    <div class="confirm">
+        <div class="confirm-details elev-1dp list">
+            <div class="list-row">
+                <i class="material-icons row-icon">
+                    {{getIcon(establishment.type)}}
+                </i>
+                <div class="row-text">
+                    {{establishment.display_name}}
+                </div>
+            </div>
+            <div class="list-row">
+                <i class="material-icons row-icon">
+                    attach_money
+                </i>
+                <div class="row-text">
+                    {{amount}}
+                </div>
+            </div>
+            <div class="list-row">
+                <i class="material-icons row-icon">
+                    payment
+                </i>
+                <div class="row-text">
+                    {{ card.brand | titlecase }} {{ card.card_number }}
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-lg elev-1dp success" (click)="confirmPayment()">
+            Confirmar
+        </button>
+    </div>
 </div>

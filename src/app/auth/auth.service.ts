@@ -14,7 +14,7 @@ export class AuthService {
     constructor(private api: ApiService) { }
 
     isLoggedIn() {
-        return true; // this.api.hasAuthorization();
+        return this.api.hasAuthorization();
     }
 
     public login(username, password: string): Observable<string> {

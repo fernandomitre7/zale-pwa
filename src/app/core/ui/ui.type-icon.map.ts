@@ -1,3 +1,4 @@
+
 export const TYPE_ICON_MAP: any = {
     'restaurant': 'restaurant',
     'library': 'local_library',
@@ -10,3 +11,8 @@ export const TYPE_ICON_MAP: any = {
     'pizzeria': 'local_pizza',
     'gas-station': 'local_gas_station'
 };
+
+export function getIcon(type: string): string {
+    return TYPE_ICON_MAP[type];
+};
+

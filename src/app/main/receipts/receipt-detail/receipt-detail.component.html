@@ -1,0 +1,64 @@
+<div *ngIf="receipt">
+
+    <div class="return" (click)="back()">
+        <i class="material-icons">
+            arrow_back
+        </i>
+        <span>Regresar</span>
+    </div>
+
+    <h1 class="title">
+        Tu Recibo
+    </h1>
+
+    <div [hidden]="!error || error.length === 0" class="form-error">
+        {{ error }}
+    </div>
+
+    <div class="receipt-details elev-1dp list card">
+        <div class="list-row">
+            <i class="material-icons row-icon">
+                {{getIcon(receipt.establishment.type)}}
+            </i>
+
+            <div class="row-text">
+                <div class="row-text-primary">
+                    {{ receipt.establishment.display_name }}
+                </div>
+                <div class="row-text-secondary">
+                    {{ receipt.establishment.description }}
+                </div>
+            </div>
+        </div>
+        <div class="list-row">
+            <i class="material-icons row-icon">
+                attach_money
+            </i>
+            <div class="row-text">
+                {{ receipt.amount }}
+            </div>
+        </div>
+        <div class="list-row">
+            <div class="row-icon">
+                <fa-icon [icon]="['fab', 'cc-' + receipt.payment_method.brand]"></fa-icon>
+            </div>
+            <div class="row-text">
+                <div class="row-text-primary">
+                    {{ receipt.payment_method.brand | titlecase }} {{ receipt.payment_method.card_number }}
+                </div>
+                <div class="row-text-secondary">
+                    {{ receipt.payment_method.bank_name }}
+                </div>
+            </div>
+        </div>
+        <div class="list-row">
+            <i class="material-icons row-icon">
+                calendar_today
+            </i>
+            <div class="row-text">
+                {{ receipt.created_date | date:'dd/MM/yy hh:mm a' }}
+            </div>
+        </div>
+    </div>
+
+</div>

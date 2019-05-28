@@ -23,12 +23,6 @@ form.error {
     transform: translateY(20%);
 } */
 
-.form-error {
-    margin-top: 2rem;
-    text-align: center;
-    color: var(--error-color);
-}
-
 .auth-container form {
     margin-top: 2rem;
 }

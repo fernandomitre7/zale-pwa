@@ -1,6 +1,6 @@
 header {
     background-color: var(--primary-color-light);
-    border-bottom: 1px solid var(--primary-color-dark);
+    /* border-bottom: 1px solid var(--primary-color-dark); */
     text-align: center;
     color: var(--secondary-color);
     font-size: 1.5rem;
@@ -8,6 +8,7 @@ header {
     width: 100vw;
     position: sticky;
     top: 0;
+    z-index:99;
 }
 
 header .header-nav {
@@ -37,6 +38,7 @@ header .header-nav.hidden ~ .header-name {
     background-color: var(--primary-color-light);
     height: 3rem;
     text-align: center;
+    z-index: 99;
 }
 
 .bottom-nav .nav-item {

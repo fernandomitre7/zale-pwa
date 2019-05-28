@@ -11,9 +11,9 @@
     </h1>
 
 
-    <div class="list elev-2dp">
+    <div class="list elev-1dp">
         <ng-container *ngIf="cards$; else loading">
-            <div class="list-row ripple" *ngFor="let card of cards$ | async">
+            <div class="list-row ripple" (click)="selectCard(card)" *ngFor="let card of cards$ | async">
                 <i class="material-icons">
                     payment
                 </i>
@@ -26,8 +26,8 @@
         </ng-template>
     </div>
 
-    <button type="button" class="btn elev-2dp add-btn" (click)="showAddNewMethod()">
-        Agregar Método de Pago
+    <button type="button" class="btn elev-1dp add-btn" (click)="showAddNewMethod()">
+        Agregar Nuevo Método de Pago
     </button>
 </div>
 
@@ -36,25 +36,26 @@
         Agregar Método de Pago
     </h1>
     <div class="new-method elev-2dp">
+
         <form #newCardForm="ngForm" (ngSubmit)="addNewCard()" card container=".card-container"
-            card-width="{{cardWidth}}" [messages]="messages" [placeholders]="placeholders"
-            [masks]="masks" formatting="true" debug="true">
+            card-width="{{cardWidth}}" [messages]="messages" [placeholders]="placeholders" [masks]="masks"
+            formatting="true" debug="true">
+            <div class="card-container"></div>
             <div class="new-method-form">
-                <div class="card-container" [ngClass]="{'small': cardWidth === 300}"></div>
-                <!-- <form #newCardForm="ngForm" (ngSubmit)="addNewCard()" card container=".card-container"
-                card-width="{{cardWidth}}" [messages]="messages" [placeholders]="placeholders"
-                [masks]="masks" formatting="true" debug="true"> -->
                 <input [(ngModel)]="newCard.card_number" type="tel" inputmode="numeric" placeholder="Número de Tarjeta"
                     id="cc-number" name="cc-number" autocomplete="cc-number" card-number>
-                <input [(ngModel)]="newCard.holder_name" type="text" placeholder="Nombre en la Tarjeta"
-                    id="cc-name" name="cc-name" autocomplete="cc-name" card-name>
+
+                <input [(ngModel)]="newCard.holder_name" type="text" placeholder="Nombre en la Tarjeta" id="cc-name"
+                    name="cc-name" autocomplete="cc-name" card-name>
+
                 <div class="exp-cvc">
                     <input [(ngModel)]="newCardExp" type="tel" placeholder="mm / aa" id="cc-exp" name="cc-exp"
                         autocomplete="cc-exp" card-expiry>
+
                     <input [(ngModel)]="newCard.cvv2" type="tel" placeholder="cvc" id="cc-csc" name="cc-csc"
                         autocomplete="cc-csc" card-cvc>
+
                 </div>
-                <!-- </form> -->
             </div>
 
             <div class="new-method-buttons">

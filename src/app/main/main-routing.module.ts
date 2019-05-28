@@ -6,6 +6,7 @@ import { ReceiptsComponent } from './receipts/receipts.component';
 import { AccountComponent } from './account/account.component';
 import { PayComponent } from './pay/pay.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
+import { ReceiptDetailComponent } from './receipts/receipt-detail/receipt-detail.component';
 
 const routes: Routes = [
     {
@@ -15,6 +16,7 @@ const routes: Routes = [
             { path: 'pay', component: PayComponent },
             { path: 'payment-methods', component: PaymentMethodsComponent },
             { path: 'receipts', component: ReceiptsComponent },
+            { path: 'receipts/:receipt_id', component: ReceiptDetailComponent },
             { path: 'account', component: AccountComponent }
         ]
     },

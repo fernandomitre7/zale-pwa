@@ -1,6 +1,6 @@
 {
     "/v1": {
-        "target": "http://localhost:3000",
+        "target": "http://local.zale.mx:3000",
         "secure": false
     }
 }

@@ -9,6 +9,10 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCcVisa, faCcMastercard, faCcDiscover, faCcJcb, faCcAmex, faCcDinersClub, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faCcVisa, faCcMastercard, faCcDiscover, faCcJcb, faCcAmex, faCcDinersClub, faCcPaypal);
 
 @NgModule({
     declarations: [
@@ -17,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ],
     imports: [
         BrowserModule,
+        //FontAwesomeModule,
         FormsModule,
         CoreModule, // API Services and UI Module
         AuthModule,

@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UIService } from '../../core/ui/ui.service';
-import { TYPE_ICON_MAP } from '../../core/ui/ui.type-icon.map';
 import { Router, NavigationStart, Event } from '@angular/router';
 import { ApiService } from '../../core/api/api.service';
-import { Subject, Observable, Subscribable, Subscription } from 'rxjs';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { Establishment } from '../../core/api/models/api.establishment';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { PayService } from '../pay/pay.service';
+import { UIService, getIcon } from 'src/app/core/ui';
 
 @Component({
     selector: 'app-search',
@@ -61,7 +60,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     search() {
-        this.searchName.next(this.searchQry.toLowerCase().trim());
+        if (this.searchQry) {
+            this.searchName.next(this.searchQry.toLowerCase().trim());
+        }
     }
 
     private subscribeSearch() {
@@ -79,9 +80,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         );
     }
 
-    getIcon(type: string) {
-        return TYPE_ICON_MAP[type];
-    }
+    getIcon = getIcon;
 
     payInEstablishment(establishment: Establishment) {
         this.payService.useEstablishment(establishment);

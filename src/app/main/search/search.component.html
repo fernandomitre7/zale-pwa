@@ -1,6 +1,6 @@
 <h1 class="search-question" [ngClass]="{'hidden': inputFocused }">¿Dónde quieres pagar?</h1>
 
-<div class="search" [ngClass]="{'focused': inputFocused }">
+<div class="search" [ngClass]="{'focused': inputFocused, 'elev-2dp': inputFocused }">
     <!-- <input type="text" placeholder="Busca un establecimiento"> -->
     <i class="material-icons" (click)="cancelSearch()">
         arrow_back
@@ -8,8 +8,8 @@
     <i class="material-icons search-icon" [hidden]="inputFocused">
         search
     </i>
-    <input [(ngModel)]="searchQry" (keyup)="search()" class="search-input" type="text"
-        placeholder=" Buscar. . ." (focus)="onSearchFocus()">
+    <input [(ngModel)]="searchQry" (keyup)="search()" class="search-input" type="text" placeholder=" Buscar. . ."
+        (focus)="onSearchFocus()">
     <i class="material-icons" (click)="clearSearch()">
         clear
     </i>

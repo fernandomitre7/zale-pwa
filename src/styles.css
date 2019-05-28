@@ -121,6 +121,9 @@ button.btn:active {
     transition: background 0s ease;
 }
 
+button.btn.btn-lg {
+    line-height: 2.5rem;
+}
 
 /**
  * Forms CSS
@@ -197,4 +200,59 @@ a {
 .vertical-div {
     width: 1px;
     background-color: var(--primary-color-dark);
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.card {
+    max-width: 90vw;
+    margin: auto;
+}
+
+.list {
+    background-color: var(--primary-color-light);
+    margin: auto;
+}
+
+.list .list-row {
+    display: flex;
+    padding: 1rem 1rem 1rem 1.8rem;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.list-row i {
+    margin-right: 0.8rem;
+}
+
+.list-row .row-icon {
+    font-size: 2rem;
+    margin-top: .4rem;
+    margin-right: 1rem;
+    color: var(--secondary-color);
+ }
+
+ .row-text {
+    margin-top: 0.4rem;
+    flex-grow: 2;
+}
+
+ .row-text .row-text-primary{
+    font-size: 1.3rem;
+    color: var(--secondary-color-dark);
+ }
+
+ .list-row .row-right {
+     color: var(--secondary-color-dark);
+     font-weight: bold;
+ }
+
+ .form-error {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--error-color);
 }

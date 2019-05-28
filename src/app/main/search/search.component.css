@@ -1,7 +1,7 @@
 .search-question {
-    font-weight: normal;
+    /* font-weight: normal;
     font-size: 2.5rem;
-    text-align: center;
+    text-align: center; */
     margin-top: 50vmin;
 }
 
@@ -26,10 +26,11 @@ div.search {
     margin-top: 0;
     background-color: var(--primary-color-light);
     color: var(--secondary-color);
-    border-bottom: 1px solid var(--primary-color-dark);
+    /* border-bottom: 1px solid var(--primary-color-dark); */
     position: relative;
     position: sticky;
     top: 0;
+    z-index: 99;
 }
 
 .search i {
@@ -108,28 +109,33 @@ div.search {
  /**
     LIST COMPONENT STYLES
  */
- .list {
+ .search-results .list {
+     /* max-width: 100vw; */
      overflow: auto;
      max-height: 90vh;
-     /* padding: 1.8rem; */
-     background-color: var(--primary-color-light);
  }
- .list .list-row {
+/*  .list {
+     overflow: auto;
+     max-height: 90vh;
+     /* padding: 1.8rem; *
+     background-color: var(--primary-color-light);
+ } */
+/*  .list .list-row {
      display: flex;
      /* margin-bottom: 1.8rem;
      margin-top: 1.8rem;
-     margin-left: 1.8rem; */
+     margin-left: 1.8rem; *
      padding: 1.4rem 0rem 1.4rem 1.8rem;
- }
+ } */
 
- .list-row .row-icon {
+/*  .list-row .row-icon {
     font-size: 2rem;
     margin-top: .4rem;
     margin-right: 1rem;
     color: var(--secondary-color);
- }
+ } */
 
- .row-text .row-text-primary{
+/*  .row-text .row-text-primary{
     font-size: 1.3rem;
     color: var(--secondary-color-dark);
- }
+ } */
