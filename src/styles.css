@@ -1,20 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
 /*
 Colors
     Primary: Blue Grey 50
     Secondary: Blue Grey 700
     https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=ECEFF1&secondary.color=455A64
 */
-@import url("elevation.css");
 
+@import url("elevation.css");
 html {
     font-size: 100%;
 }
+
 @media screen and (max-width: 375px) and (max-device-height: 800px) {
     html {
         font-size: 80%;
     }
 }
+
 @media screen and (max-width: 370px) {
     html {
         font-size: 75%;
@@ -26,40 +29,35 @@ html {
     --primary-color-light: #FFFFFF;
     --primary-color-dark: #babdbe;
     --primary-text: #000000; */
-
     /* --secondary-color: #455a64;
     --secondary-color-light: #718792;
     --secondary-color-dark: #1c313a;
     --secondary-text: #ffffff; */
-
     --primary-color: #fafafa;
     --primary-color-light: #FFFFFF;
     --primary-color-dark: #c7c7c7;
     --primary-text: #000000;
-
     --secondary-color: #2e7d32;
-    --secondary-color-light: #60ad5e;
+    --secondary-color-light: #A5D6A7;
+    /*  #60ad5e; */
     --secondary-color-dark: #005005;
     --secondary-text: #ffffff;
-
     --error-color: #B00020;
-
     --icon-color: #424242;
 }
+
 body {
     margin: 0;
     color: var(--primary-text);
     font-family: 'Montserrat', sans-serif;
     background-color: var(--primary-color);
 }
+
 input {
     font-family: 'Montserrat', sans-serif;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="tel"] {
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"] {
     font-size: 1.2rem;
     width: 100%;
     border-width: 0px 0px 1px 0px;
@@ -71,11 +69,8 @@ input[type="tel"] {
     margin-right: auto;
     outline: none;
 }
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-input[type="tel"]:focus {
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="tel"]:focus {
     border-width: 0px 0px 2px 0px;
     border-color: var(--secondary-color-dark);
 }
@@ -90,7 +85,6 @@ button.btn {
     outline: none;
     border: none;
     border-radius: 6px;
-
     background-position: center;
     transition: background 0.6s ease;
 }
@@ -104,18 +98,15 @@ button.btn-clear {
     font-family: 'Montserrat', sans-serif;
     outline: none;
     border: none;
-
     background-position: center;
     transition: background 0.6s ease;
 }
 
-button.btn-clear:disabled,
-button.btn:disabled {
+button.btn-clear:disabled, button.btn:disabled {
     opacity: 0.7;
 }
 
-button.btn-clear:active,
-button.btn:active {
+button.btn-clear:active, button.btn:active {
     background-color: var(--secondary-color-light);
     background-size: 100%;
     transition: background 0s ease;
@@ -128,6 +119,7 @@ button.btn.btn-lg {
 /**
  * Forms CSS
  */
+
 /*  .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; 
 }
@@ -138,22 +130,25 @@ button.btn.btn-lg {
 /**
  * Ripple Effect
  */
+
 /* Ripple effect */
+
 .ripple {
     background-position: center;
     transition: background 0.6s ease;
 }
+
 /* 
 Actual ripple effect but I didnt like it
 .ripple:hover {
     background: var(--primary-color-dark) radial-gradient(circle, transparent 1%, var(--primary-color-dark) 1%) center/15000%;
 } */
+
 .ripple:active {
     background-color: var(--primary-color-dark) !important;
     background-size: 100%;
     transition: background 0s ease;
 }
-
 
 a {
     text-decoration: none;
@@ -168,12 +163,13 @@ a {
 .error {
     color: var(--error-color);
 }
+
 .success {
     color: var(--secondary-color);
 }
 
 .error-bg {
-    background-color:  var(--error-color);
+    background-color: var(--error-color);
     color: #FFFFFF;
 }
 
@@ -204,13 +200,15 @@ a {
 
 h1 {
     font-weight: normal;
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
+    padding: 0 1rem;
 }
 
 .card {
     max-width: 90vw;
-    margin: auto;
+    margin: 1rem auto;
+    background: var(--primary-color-light);
 }
 
 .list {
@@ -220,7 +218,7 @@ h1 {
 
 .list .list-row {
     display: flex;
-    padding: 1rem 1rem 1rem 1.8rem;
+    padding: 1rem 1.8rem;
     align-items: center;
     font-size: 1.2rem;
 }
@@ -234,25 +232,104 @@ h1 {
     margin-top: .4rem;
     margin-right: 1rem;
     color: var(--secondary-color);
- }
+}
 
- .row-text {
+.row-text {
     margin-top: 0.4rem;
     flex-grow: 2;
 }
 
- .row-text .row-text-primary{
+.row-text .row-text-primary {
     font-size: 1.3rem;
     color: var(--secondary-color-dark);
- }
+}
 
- .list-row .row-right {
-     color: var(--secondary-color-dark);
-     font-weight: bold;
- }
+.list-row .row-right {
+    color: var(--secondary-color-dark);
+    font-weight: bold;
+}
 
- .form-error {
-    margin-top: 2rem;
+.form-error {
+    font-size: 1.3rem;
+    /* margin-top: 2rem; */
     text-align: center;
     color: var(--error-color);
+    padding: 2rem;
 }
+
+/** 
+    Switch Checkbox
+    Obtained from: https://codepen.io/guuslieben/pen/YyPRVP?editors=1100
+*/
+
+.switch-input {
+    display: none;
+}
+
+.switch-label {
+    position: relative;
+    display: inline-block;
+    min-width: 112px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: left;
+    /* margin: 16px; */
+    padding: 0px 0 0px 44px;
+}
+
+.switch-label::before, .switch-label:after {
+    content: "";
+    position: absolute;
+    margin: 0;
+    outline: 0;
+    top: 50%;
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.switch-label::before {
+    left: 1px;
+    width: 34px;
+    height: 14px;
+    background-color: #9E9E9E;
+    border-radius: 8px;
+}
+
+.switch-label:after {
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+}
+
+/* .switch-label .toggle--on {
+    display: none;
+}
+
+.switch-label .toggle--off {
+    display: inline-block;
+} */
+
+.switch-input:checked+.switch-label::before {
+    background-color: var(--secondary-color-light);
+}
+
+.switch-input:checked+.switch-label:after {
+    background-color: var(--secondary-color);
+    -ms-transform: translate(80%, -50%);
+    -webkit-transform: translate(80%, -50%);
+    transform: translate(80%, -50%);
+}
+
+/* .switch-input:checked+.switch-label .toggle--on {
+    display: inline-block;
+}
+
+.switch-input:checked+.switch-label .toggle--off {
+    display: none;
+} */

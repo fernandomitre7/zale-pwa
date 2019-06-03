@@ -1,3 +1,111 @@
-<p>
-  account works!
-</p>
+<div [hidden]="!error || error.length === 0" class="form-error">
+    {{ error }}
+</div>
+
+<div *ngIf="user">
+
+    <div class="profile-pic-container" *ngIf="user.profile_picture_sm; else profilePlaceholder">
+        <div class="profile-pic-img elev-1dp">
+            <img [src]="user.profile_picture_sm">
+        </div>
+    </div>
+
+    <ng-template #profilePlaceholder>
+        <div class="profile-pic-container">
+            <div class="profile-pic-img elev-1dp">
+                <fa-icon [icon]="['fas', 'user']"></fa-icon>
+            </div>
+            <div class="profile-pic-add">
+                Agrega una foto de perfil
+            </div>
+        </div>
+    </ng-template>
+
+
+    <h1 class="title">
+        {{ user.username}}
+    </h1>
+
+
+
+    <div class="list elev-1dp">
+        <!-- Personal Info -->
+        <div class="list-row ripple">
+            <div class="row-icon">
+                <i class="material-icons row-icon">
+                    person
+                </i>
+            </div>
+            <div class="row-text">
+                Información Personal
+            </div>
+            <div class="row-right">
+                <i class="material-icons row-icon">
+                    chevron_right
+                </i>
+            </div>
+        </div>
+        <!-- Payment Methods -->
+        <div class="list-row ripple" [routerLink]="['/main/payment-methods']">
+            <div class="row-icon">
+                <i class="material-icons row-icon">
+                    payment
+                </i>
+            </div>
+            <div class="row-text">
+                Métodos de Pago
+            </div>
+            <div class="row-right">
+                <i class="material-icons row-icon">
+                    chevron_right
+                </i>
+            </div>
+        </div>
+        <!-- Notifications -->
+        <div class="list-row ripple">
+            <div class="row-icon">
+                <i class="material-icons row-icon">
+                    notifications
+                </i>
+            </div>
+            <div class="row-text">
+                Configurar Notificaciones
+            </div>
+            <div class="row-right">
+                <i class="material-icons row-icon">
+                    chevron_right
+                </i>
+            </div>
+        </div>
+        <!-- Security -->
+        <div class="list-row ripple">
+            <div class="row-icon">
+                <i class="material-icons row-icon">
+                    lock
+                </i>
+            </div>
+            <div class="row-text">
+                Seguridad
+            </div>
+            <div class="row-right">
+                <i class="material-icons row-icon">
+                    chevron_right
+                </i>
+            </div>
+        </div>
+        <!-- Sign Out -->
+        <div class="list-row ripple sign-out">
+            <div class="row-icon">
+                <i class="material-icons row-icon">
+                    power_settings_new
+                </i>
+            </div>
+            <div class="row-text">
+                Cerrar Sesión
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

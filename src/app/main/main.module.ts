@@ -13,6 +13,7 @@ import { PaymentMethodsComponent } from './payment-methods/payment-methods.compo
 import { CardModule } from 'ngx-card/ngx-card';
 import { ReceiptDetailComponent } from './receipts/receipt-detail/receipt-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaymenMethodDetailsComponent } from './payment-methods/paymen-method-details/paymen-method-details.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         AccountComponent,
         PayComponent,
         PaymentMethodsComponent,
-        ReceiptDetailComponent
+        ReceiptDetailComponent,
+        PaymenMethodDetailsComponent
     ]
 })
 export class MainModule { }

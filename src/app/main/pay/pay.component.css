@@ -55,13 +55,6 @@
     text-decoration: underline var(--secondary-color);
 }
 
-.confirm {
-    max-width: 90vw;
-    margin: auto;
-    /* min-height: 250px;
-    display: flex; */
-}
-
 .confirm-details {
     margin-bottom: 2rem;
 }

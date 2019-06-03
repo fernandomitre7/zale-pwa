@@ -33,7 +33,6 @@ export class ReceiptsComponent implements OnInit {
     this.api.getReceipts().subscribe({
       next: (receipts: Receipt[]) => {
         this.currentReceipts = receipts;
-        debugger;
         if (!this.receipts$) {
           this.receipts$ = new BehaviorSubject<Receipt[]>(this.currentReceipts);
         } else {

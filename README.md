@@ -14,6 +14,15 @@ Check favicon: https://realfavicongenerator.net/favicon_checker
 - When searching for a place, add scanning QR code functionality using this library:
 https://github.com/schmich/instascan
 
+- Account:
+    * account info: username
+    * change password 
+    * payment methods:
+        * modify payment method: delete and remove default
+
+- Promos:
+
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.

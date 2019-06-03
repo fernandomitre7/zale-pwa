@@ -56,7 +56,7 @@
     <div [hidden]="!error || error.length === 0" class="form-error">
         {{ error }}
     </div>
-    <div class="confirm">
+    <div class="card">
         <div class="confirm-details elev-1dp list">
             <div class="list-row">
                 <i class="material-icons row-icon">
@@ -75,9 +75,9 @@
                 </div>
             </div>
             <div class="list-row">
-                <i class="material-icons row-icon">
-                    payment
-                </i>
+                <div class="row-icon">
+                    <fa-icon [icon]="['fab', 'cc-' + card.brand]"></fa-icon>
+                </div>
                 <div class="row-text">
                     {{ card.brand | titlecase }} {{ card.card_number }}
                 </div>

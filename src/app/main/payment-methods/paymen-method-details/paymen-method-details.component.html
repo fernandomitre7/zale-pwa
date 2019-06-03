@@ -1,0 +1,62 @@
+<div class="return" (click)="back()">
+    <i class="material-icons">
+        arrow_back
+    </i>
+    <span>Regresar</span>
+</div>
+
+<div [hidden]="!error || error.length === 0" class="form-error">
+    {{ error }}
+</div>
+
+<div *ngIf="card">
+
+    <h1 class="title">
+        Tarjeta de {{ card.type === 'debit' ? 'Debito' : 'Credito' }}
+    </h1>
+
+    <div class="card-details elev-1dp list card">
+
+        <div class="list-row">
+            <i class="row-icon">
+                <fa-icon [icon]="['fab', 'cc-' + card.brand]"></fa-icon>
+            </i>
+
+            <div class="row-text">
+                {{ card.brand | titlecase }} {{ card.card_number }}
+            </div>
+        </div>
+        <div class="list-row">
+            <i class="material-icons row-icon">
+                payment
+            </i>
+            <div class="row-text">
+                <div class="row-text-primary">
+                    Nombre en la Tarjeta
+                </div>
+                <div class="row-text-secondary">
+                    {{ card.holder_name }}
+                </div>
+            </div>
+        </div>
+        <div class="list-row">
+            <i class="material-icons row-icon">
+                calendar_today
+            </i>
+            <div class="row-text">
+                <div class="row-text-primary">
+                    Fecha de Expiración (mm / yy)
+                </div>
+                <div class="row-text-secondary">
+                    {{ card.expiration_month }} / {{ card.expiration_year }}
+                </div>
+            </div>
+        </div>
+
+        <div class="list-row make-default">
+            <input type="checkbox" [(ngModel)]="default" id="set-default" name="set-default" class="switch-input">
+            <label for="set-default" class="switch-label">Usar como predeterminada</label>
+        </div>
+    </div>
+
+</div>

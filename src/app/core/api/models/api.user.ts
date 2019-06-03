@@ -7,6 +7,8 @@ export class User implements ApiObject {
     password?: string;
     confirm_password?: string;
 
+    profile_picture_sm: string;
+
     cards: Card[];
 
     constructor() { }

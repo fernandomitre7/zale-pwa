@@ -57,7 +57,7 @@ export class ApiService {
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error.message);
             apiError.status = ErrorStatus.ClientError;
-            apiError.message = 'Ocurrio un error en la red.';
+            apiError.message = 'Ocurrió un error en la red. ¿Estás conectado a internet?';
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -65,7 +65,11 @@ export class ApiService {
                 `Backend returned code ${error.status}, ` +
                 `body was: ${JSON.stringify(error.error)}`);
             apiError.status = error.status;
-            apiError.message = error.error.message;
+            apiError.message = apiError.status !== ErrorStatus.ClientError ? error.error.message : 'Ocurrió un error en la red. ¿Estás conectado a internet?';
+        }
+
+        if (apiError.status === ErrorStatus.Unauthorized) {
+            window.location.reload();
         }
 
         // return an observable with a user-facing error message
@@ -107,6 +111,15 @@ export class ApiService {
             );
     }
 
+    getUser(userId: string = 'me'): Observable<User> {
+        const url = `${this.API_VERSION}/users/${userId}`;
+        return this.http.get<User>(url, this.httpOptions)
+            .pipe(
+                retry(2),
+                catchError(this.handleError)
+            )
+    }
+
     /**
      * Get Establishments
      *
@@ -137,6 +150,15 @@ export class ApiService {
             .pipe(
                 catchError(this.handleError)
             );
+    }
+
+    getCard(card_id: string): Observable<Card> {
+        const url = `${this.API_VERSION}/users/me/cards/${card_id}`;
+
+        return this.http.get<Card>(url, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            )
     }
 
     getCardDefault(): Observable<Card> {
@@ -170,11 +192,20 @@ export class ApiService {
             );
     }
 
+    updateCard(card: Card): Observable<Card> {
+        const url = `${this.API_VERSION}/users/me/cards/${card.id}`;
+        return this.http.post<Card>(url, card, this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            )
+    }
+
     makeTransaction(card: Card, establishment: Establishment, amount: string): Observable<Receipt> {
         const t = new Transaction();
         t.payment_method_id = card.id;
         t.establishment_id = establishment.id;
-        t.amout = amount;
+        t.amount = amount;
         const url = `${this.API_VERSION}/users/me/transactions`;
         return this.http.post<Receipt>(url, t, this.httpOptions)
             .pipe(

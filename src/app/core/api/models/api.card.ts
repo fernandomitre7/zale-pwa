@@ -2,6 +2,7 @@ import { ApiObject } from '../api.service';
 
 export class Card implements ApiObject {
     id?: string;
+    default: boolean;
     creation_date: Date;
     holder_name: string;
     card_number: string;

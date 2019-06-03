@@ -2,7 +2,8 @@
   "users": [
     {
       "id": "me",
-      "username": "fernando@zale.mx"
+      "username": "fernando@zale.mx",
+      "profile_picture_sm": "https://instagram.fntr6-1.fna.fbcdn.net/vp/af151af97e4c13ecc45bdeb8a9e22644/5D9B4A6F/t51.2885-19/s320x320/18160892_1486412811403560_8566646154039656448_a.jpg?_nc_ht=instagram.fntr6-1.fna.fbcdn.net"
     }
   ],
   "cards": [
@@ -37,6 +38,27 @@
       "bank_code": "012",
       "type": "debit",
       "brand": "visa"
+    },
+    {
+      "card_number": "5555",
+      "holder_name": "fernando mitre",
+      "cvv2": "234",
+      "default": true,
+      "expiration_month": "12",
+      "expiration_year": "23",
+      "brand": "mastercard",
+      "userId": "me",
+      "id": "UqZxXjm"
+    },
+    {
+      "card_number": "4242",
+      "holder_name": "fernando mitre",
+      "cvv2": "123",
+      "expiration_month": "12",
+      "expiration_year": "23",
+      "brand": "visa",
+      "userId": "me",
+      "id": "iTQbqER"
     }
   ],
   "establishments": [

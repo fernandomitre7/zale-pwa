@@ -1,0 +1,33 @@
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.profile-pic-container .profile-pic-img {
+    background-color: var(--primary-color-light);
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border-radius: 40px;
+    color: var(--icon-color);
+    line-height: 80px;
+    overflow: hidden;
+}
+
+.profile-pic-img img {
+    width: 80px;
+}
+
+.profile-pic-container .profile-pic-add {
+    margin-top: 1rem;
+    text-decoration: underline var(--secondary-color);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.sign-out {
+    margin-top: 3rem;
+}

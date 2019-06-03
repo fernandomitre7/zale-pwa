@@ -8,7 +8,7 @@ header {
     width: 100vw;
     position: sticky;
     top: 0;
-    z-index:99;
+    z-index: 99;
 }
 
 header .header-nav {
@@ -17,12 +17,12 @@ header .header-nav {
     font-size: 1.8rem;
 }
 
-header .header-nav ~ .header-name {
+header .header-nav~.header-name {
     width: 100%;
     margin-right: 3rem;
 }
 
-header .header-nav.hidden ~ .header-name {
+header .header-nav.hidden~.header-name {
     margin-right: 0;
 }
 
@@ -36,7 +36,7 @@ header .header-nav.hidden ~ .header-name {
     align-items: center;
     border-top: 1px solid var(--secondary-color);
     background-color: var(--primary-color-light);
-    height: 3rem;
+    height: 40px;
     text-align: center;
     z-index: 99;
 }
@@ -52,7 +52,7 @@ header .header-nav.hidden ~ .header-name {
     color: var(--secondary-color);
     background-color: var(--primary-color-light);
     border-top: 2px solid var(--secondary-color);
-    height: 120%;
+    height: 50px;
     outline: none;
 }
 
@@ -74,7 +74,11 @@ header .header-nav.hidden ~ .header-name {
 }
 
 .bottom-nav .nav-item .nav-item-icon {
-    margin-top: 0.2rem;
+    margin-top: 1px;
+}
+
+.bottom-nav .nav-item.active .nav-item-icon {
+    margin-top: 5px;
 }
 
 .bottom-nav .nav-item .nav-item-text {

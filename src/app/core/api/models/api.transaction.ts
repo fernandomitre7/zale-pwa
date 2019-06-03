@@ -5,7 +5,7 @@ export class Transaction implements ApiObject {
     id?: string;
     payment_method_id: string;
     establishment_id: string;
-    amout: string;
+    amount: string;
 
     constructor() { }
 

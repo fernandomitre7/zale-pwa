@@ -65,15 +65,16 @@ server.post(`${API_VERSION}/auth/tokens`, (req, res) => {
 });
 
 server.post(`${API_VERSION}/users/me/transactions`, (req, res) => {
-    /*  const receipt = receiptsdb.receipts[0];
-     receipt.amount = req.body.amount;
-     receipt.created_date = new Date();
-     res.status(200).json(receipt); */
-    const status = 400
+    console.log('POST /transactions body = %o', req.body);
+    const receipt = receiptsdb.receipts[0];
+    receipt.amount = req.body.amount;
+    receipt.created_date = new Date();
+    res.status(200).json(receipt);
+    /* const status = 400
     const message = 'Error making Transaction';
     res.status(status).json({
         status, message
-    });
+    }); */
 });
 
 server.get(`${API_VERSION}/users/me/receipts`, (req, res) => {
@@ -83,7 +84,18 @@ server.get(`${API_VERSION}/users/me/receipts`, (req, res) => {
     receipts.forEach((receipt, i) => {
         receipt.created_date = date.setDate(date.getDate() - i);
     });
+    console.log('receipts: %o', receipts);
     res.status(200).json(receipts);
+});
+
+server.get(`${API_VERSION}/users/me/receipts/:receipt_id`, (req, res) => {
+    const receipt_id = req.params.receipt_id;
+    console.log('GET Receipt ID req = ');
+    const idx = receiptsdb.receipts.findIndex(receipt => receipt.id === receipt_id);
+    const receipt = receiptsdb.receipts[idx];
+    receipt.created_date = new Date();
+
+    res.status(200).json(receipt);
 });
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {

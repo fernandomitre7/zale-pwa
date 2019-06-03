@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { ApiService } from '../../core/api/api.service';
 import { PayService } from '../pay/pay.service';
 import { ApiError } from '../../core/api/models';
+import { Location } from '@angular/common';
+import { UIService } from 'src/app/core/ui';
 
 @Component({
     selector: 'app-payment-methods',
@@ -16,11 +18,11 @@ export class PaymentMethodsComponent implements OnInit {
 
     private currentCards: Card[] = [];
     cards$: BehaviorSubject<Card[]>;
-
+    canEdit: boolean;
     newCard: Card;
     newCardExp: string;
     cardWidth: number;
-    addingNewMethod: boolean;
+    addingNewMethod: boolean = false;
 
     /* //ngx-card html form options
     // Strings for translation - optional
@@ -41,27 +43,46 @@ export class PaymentMethodsComponent implements OnInit {
         cardNumber: '•' // optional - mask card number
     };
 
-    constructor(private api: ApiService, private payServce: PayService, private router: Router, /* private ref: ChangeDetectorRef */) { }
+    constructor(
+        private api: ApiService,
+        private payServce: PayService,
+        private uiService: UIService,
+        private router: Router,
+        private location: Location) { }
 
     ngOnInit() {
         // this.cards$ = new BehaviorSubject<Card[]>(this.currentCards);
         this.getCards();
         this.addingNewMethod = false;
-        debugger;
         this.cardWidth = 300;//window.innerWidth <= 350 ? 300 : 350;
         this.newCard = new Card();
+        this.canEdit = !this.payServce.getEstablishmentToUse();
     }
 
     back() {
-        this.router.navigate(['/main/pay']);
+        debugger;
+        if (this.addingNewMethod) {
+            this.cancel();
+        } else if (this.canEdit) {
+            this.router.navigate(['/main/account']);
+            // this.location.back();
+        } else {
+            this.router.navigate(['/main/pay']);
+        }
     }
 
     selectCard(card: Card) {
         this.payServce.useCard(card);
-        this.router.navigate(['/main/pay']);
+        // this.router.navigate(['/main/pay']);
+        if (!this.canEdit) {
+            this.location.back();
+        } else {
+            this.router.navigate(['/main/payment-methods', card.id]);
+        }
     }
 
     getCards() {
+        this.uiService.showLoading();
         this.api.getCards().subscribe((cards: Card[]) => {
             this.currentCards = cards;
             if (!this.cards$) {
@@ -69,7 +90,10 @@ export class PaymentMethodsComponent implements OnInit {
             } else {
                 this.cards$.next(this.currentCards);
             }
+            this.uiService.hideLoading();
+
         }, (err: ApiError) => {
+            this.uiService.hideLoading();
             console.error(err);
         });
     }
@@ -88,6 +112,7 @@ export class PaymentMethodsComponent implements OnInit {
         await wait(150);
         this.addingNewMethod = false;
     }
+
 
     async addNewCard() {
         // newCardExp = "mm / yy"

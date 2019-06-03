@@ -10,9 +10,10 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCircle, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCcVisa, faCcMastercard, faCcDiscover, faCcJcb, faCcAmex, faCcDinersClub, faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faCcVisa, faCcMastercard, faCcDiscover, faCcJcb, faCcAmex, faCcDinersClub, faCcPaypal);
+library.add(faCcVisa, faCcMastercard, faCcDiscover, faCcJcb, faCcAmex, faCcDinersClub, faCcPaypal, faCircle, faUser);
 
 @NgModule({
     declarations: [

@@ -1,20 +1,18 @@
+<div class="return" (click)="back()">
+    <i class="material-icons">
+        arrow_back
+    </i>
+    <span>Regresar</span>
+</div>
+
+<h1 class="title">
+    Tu Recibo
+</h1>
+
+<div [hidden]="!error || error.length === 0" class="form-error">
+    {{ error }}
+</div>
 <div *ngIf="receipt">
-
-    <div class="return" (click)="back()">
-        <i class="material-icons">
-            arrow_back
-        </i>
-        <span>Regresar</span>
-    </div>
-
-    <h1 class="title">
-        Tu Recibo
-    </h1>
-
-    <div [hidden]="!error || error.length === 0" class="form-error">
-        {{ error }}
-    </div>
-
     <div class="receipt-details elev-1dp list card">
         <div class="list-row">
             <i class="material-icons row-icon">
